@@ -76,10 +76,10 @@ export default function Services() {
           <div className="mb-12">
             <p className="text-xs uppercase tracking-wider text-gray-500 mb-4">FS Softwares Division</p>
             <h3 className="font-display text-3xl md:text-4xl font-bold text-black mb-4">
-              {softwareProducts.length}+ Enterprise Software Products
+              {softwareProducts.length} Business Management Solutions
             </h3>
             <p className="text-base text-gray-600 max-w-2xl">
-              Our dedicated software division builds specialized enterprise tools across six core categories.
+              Our dedicated software division delivers 20 business management solutions spanning financial, retail, operations, industry-specific, service, and enterprise categories.
             </p>
           </div>
 
@@ -120,7 +120,7 @@ export default function Services() {
           {/* Discovery Link */}
           <div className="mt-12 text-center">
             <a
-              href="https://member-tophcomm-fssoftwares.netlify.app/#/intake"
+              href="https://fs-softwares-library.sassy-goat-1694.chatgpt.site"
               target="_blank"
               rel="noopener noreferrer"
               className="inline-flex items-center gap-2 px-8 py-4 bg-black text-white rounded-full font-semibold hover:bg-accent transition-colors"

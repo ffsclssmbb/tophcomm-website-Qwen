@@ -152,7 +152,7 @@ export default function Hero() {
         {/* Discovery Link Button */}
         <div className="absolute bottom-12 left-12 hidden md:block">
           <a
-            href="https://member-tophcomm-fssoftwares.netlify.app/#/intake"
+            href="https://fs-softwares-library.sassy-goat-1694.chatgpt.site"
             target="_blank"
             rel="noopener noreferrer"
             className="inline-flex items-center gap-3 px-6 py-3 bg-white/10 backdrop-blur-md border border-white/20 rounded-full text-white font-medium hover:bg-white/20 transition-all"

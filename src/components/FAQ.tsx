@@ -29,7 +29,7 @@ const faqs = [
   },
   {
     question: 'What is FS Softwares and how can I explore your products?',
-    answer: 'FS Softwares is our dedicated software division with 24+ enterprise products across intake systems, workflow automation, data analytics, cloud infrastructure, cybersecurity, and systems integration. You can explore our full product catalog and try demos at our Discovery Portal.',
+    answer: 'FS Softwares is our dedicated software division with 20 business management solutions spanning accounting, retail, distribution, manufacturing, construction, telecom, transport, hospitality, healthcare, education, and more. You can explore our full Solution Explorer at our Discovery Portal.',
   },
 ];
 
@@ -104,7 +104,7 @@ export default function FAQ() {
             </svg>
           </a>
           <a
-            href="https://member-tophcomm-fssoftwares.netlify.app/#/intake"
+            href="https://fs-softwares-library.sassy-goat-1694.chatgpt.site"
             target="_blank"
             rel="noopener noreferrer"
             className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-black text-white font-medium text-sm hover:bg-accent transition-all"

@@ -40,7 +40,7 @@ export default function Innovation() {
             <h3 className="font-display text-3xl md:text-4xl font-bold mb-4">
               FS Softwares
             </h3>
-            <p className="text-sm text-gray-400 mb-6">Systems Division • {softwareProducts.length}+ Products</p>
+            <p className="text-sm text-gray-400 mb-6">Systems Division • {softwareProducts.length} Business Solutions</p>
             <p className="text-gray-300 leading-relaxed mb-8">
               Our dedicated software division building specialized enterprise tools — from intake management systems to workflow automation platforms. Each product is battle-tested in real enterprise environments.
             </p>
@@ -56,7 +56,7 @@ export default function Innovation() {
             </div>
 
             <a 
-              href="https://member-tophcomm-fssoftwares.netlify.app/#/intake"
+              href="https://fs-softwares-library.sassy-goat-1694.chatgpt.site"
               target="_blank"
               rel="noopener noreferrer"
               className="inline-flex items-center gap-2 text-green-400 hover:text-green-300 transition-colors text-sm font-medium"
@@ -121,7 +121,7 @@ export default function Innovation() {
                 Complete Product Catalog
               </h3>
               <p className="text-sm text-gray-600">
-                {softwareProducts.length} enterprise software products across {softwareCategories.length} categories
+                {softwareProducts.length} business management solutions across {softwareCategories.length} categories
               </p>
             </div>
             <a

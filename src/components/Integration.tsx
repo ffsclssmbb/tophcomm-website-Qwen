@@ -3,12 +3,12 @@ import { ArrowUpRight, GitBranch, Database, Cloud, Shield, Network, FileText } f
 import { softwareCategories, softwareProducts } from '../data/softwareCatalog';
 
 const integrationFlow = [
-  { icon: FileText, label: 'Intake', color: 'bg-blue-500', products: 4 },
-  { icon: GitBranch, label: 'Workflow', color: 'bg-purple-500', products: 4 },
-  { icon: Database, label: 'Data', color: 'bg-green-500', products: 4 },
-  { icon: Cloud, label: 'Cloud', color: 'bg-cyan-500', products: 4 },
-  { icon: Shield, label: 'Security', color: 'bg-red-500', products: 4 },
-  { icon: Network, label: 'Integration', color: 'bg-orange-500', products: 4 },
+  { icon: FileText, label: 'Financial', color: 'bg-blue-500', products: 1 },
+  { icon: GitBranch, label: 'Retail', color: 'bg-purple-500', products: 2 },
+  { icon: Database, label: 'Operations', color: 'bg-green-500', products: 3 },
+  { icon: Cloud, label: 'Industry', color: 'bg-cyan-500', products: 5 },
+  { icon: Shield, label: 'Service', color: 'bg-red-500', products: 4 },
+  { icon: Network, label: 'Enterprise', color: 'bg-orange-500', products: 5 },
 ];
 
 export default function Integration() {
@@ -27,7 +27,7 @@ export default function Integration() {
             One Platform, Every System
           </h2>
           <p className="text-base md:text-lg text-gray-600 max-w-3xl">
-            Our FS Softwares suite integrates seamlessly across six core categories, creating a unified ecosystem for your enterprise.
+            Our FS Softwares suite delivers 20 business management solutions across six core categories — from accounting and retail to manufacturing, healthcare, and education — creating a unified ecosystem for your enterprise.
           </p>
         </motion.div>
 
@@ -77,7 +77,7 @@ export default function Integration() {
               Complete Software Catalog
             </h3>
             <p className="text-base text-gray-600">
-              {softwareProducts.length} enterprise software products across {softwareCategories.length} categories
+              {softwareProducts.length} business management solutions across {softwareCategories.length} categories
             </p>
           </div>
 
@@ -116,12 +116,12 @@ export default function Integration() {
                         </div>
                         <p className="text-sm text-gray-600 mb-3 line-clamp-2">{product.description}</p>
                         <div className="flex flex-wrap gap-1.5">
-                          {product.features.slice(0, 3).map((feature) => (
+                          {product.modules.map((mod) => (
                             <span
-                              key={feature}
+                              key={mod}
                               className="px-2 py-0.5 bg-white text-xs text-gray-600 rounded-full"
                             >
-                              {feature}
+                              {mod}
                             </span>
                           ))}
                         </div>
@@ -136,7 +136,7 @@ export default function Integration() {
           {/* Discovery Link */}
           <div className="mt-12 text-center">
             <a
-              href="https://member-tophcomm-fssoftwares.netlify.app/#/intake"
+              href="https://fs-softwares-library.sassy-goat-1694.chatgpt.site"
               target="_blank"
               rel="noopener noreferrer"
               className="inline-flex items-center gap-2 px-8 py-4 bg-black text-white rounded-full font-semibold hover:bg-accent transition-colors"
