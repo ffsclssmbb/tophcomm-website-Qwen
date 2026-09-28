@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<meta name="description" content="Tophcomm Systems & FS Softwares — Business management systems for the Philippines. NCR · Cebu · Davao."/>
+<meta name="description" content="Tophcomm Systems & FS Softwares — Business management systems for the Philippines. Davao HQ · Manila QC · Cebu Mabolo."/>
 <meta name="theme-color" content="#000000"/>
 <title>Tophcomm Systems — Business Infrastructure</title>
 <link rel="preconnect" href="https://fonts.googleapis.com"/>
@@ -253,6 +253,20 @@ a:focus-visible,button:focus-visible,input:focus-visible,textarea:focus-visible,
 .field [aria-invalid="true"]{border-color:#f87171}
 .alert-err[role="alert"]{display:block}
 
+
+.about-layout{display:grid;gap:2rem;align-items:start}
+@media(min-width:900px){.about-layout{grid-template-columns:1.1fr .9fr;gap:2.5rem}}
+.about-cards{display:flex;flex-direction:column;gap:1rem}
+.about-card{
+  border-radius:16px;padding:1.35rem 1.5rem;
+  border:1px solid rgba(74,222,128,.25);
+  background:rgba(0,20,10,.35);
+  box-shadow:0 0 24px rgba(74,222,128,.06);
+}
+.about-card h3{font-size:1.05rem;font-weight:600;margin:0 0 .4rem;color:#fff}
+.about-card p{font-size:.88rem;color:var(--muted);line-height:1.55;margin:0}
+.about-card-icon{font-size:1.1rem;margin-bottom:.5rem;color:var(--green)}
+
 </style>
 </head>
 <body>
@@ -307,12 +321,12 @@ a:focus-visible,button:focus-visible,input:focus-visible,textarea:focus-visible,
     <p class="lede">Deploy 20 enterprise-grade business management solutions across 12 Philippine industries. Born in Mindanao, built for the nation.</p>
     <div class="hero-actions">
       <a class="btn btn-solid" href="#contact">Start for Free →</a>
-      <a class="btn btn-ghost" href="#solutions">Explore Solutions</a>
+      <a class="btn btn-ghost" href="https://fs-library.sassy-goat-1694.chatgpt.site/" target="_blank" rel="noopener noreferrer">Explore Solutions</a>
     </div>
     <div class="hubs">
-      <span class="hub">NCR Hub</span>
-      <span class="hub">Cebu Hub</span>
       <span class="hub">Davao HQ</span>
+      <span class="hub">Manila · Opening @ QC</span>
+      <span class="hub">Cebu · Opening @ Mabolo</span>
     </div>
   </div>
 </header>
@@ -358,7 +372,7 @@ a:focus-visible,button:focus-visible,input:focus-visible,textarea:focus-visible,
           </div>
         </div>
         <p>Specialized enterprise tools — intake, workflow automation, and industry systems battle-tested in real operations.</p>
-        <a class="btn btn-ghost" href="#pricing">View pricing</a>
+        <a class="btn btn-ghost" href="https://fs-library.sassy-goat-1694.chatgpt.site/" target="_blank" rel="noopener noreferrer">Discovery Portal</a> <a class="btn btn-ghost" href="#pricing">View pricing</a>
       </div>
       <div class="division digi">
         <div class="brand-row">
@@ -418,9 +432,18 @@ a:focus-visible,button:focus-visible,input:focus-visible,textarea:focus-visible,
     <p class="eyebrow reveal">Nationwide</p>
     <h2 class="reveal" style="margin-bottom:2rem">Three strategic hubs</h2>
     <div class="grid-3">
-      <div class="hub-card reveal"><strong>NCR Hub</strong><span>Metro Manila / Quezon City · Luzon coverage</span></div>
-      <div class="hub-card reveal"><strong>Cebu Hub</strong><span>Cebu City · Visayas coverage</span></div>
-      <div class="hub-card reveal"><strong>Davao HQ</strong><span>Davao City · Mindanao coverage</span></div>
+      <div class="hub-card reveal">
+        <strong>Davao — Headquarters</strong>
+        <span>Davao City · Mindanao · Primary HQ</span>
+      </div>
+      <div class="hub-card reveal">
+        <strong>Manila — For Opening</strong>
+        <span>Quezon City (QC) · Luzon · Opening soon</span>
+      </div>
+      <div class="hub-card reveal">
+        <strong>Cebu — For Opening</strong>
+        <span>Mabolo · Visayas · Opening soon</span>
+      </div>
     </div>
   </div>
 </section>
@@ -470,7 +493,7 @@ a:focus-visible,button:focus-visible,input:focus-visible,textarea:focus-visible,
     <h2 class="reveal" id="faq-heading" style="margin-bottom:2rem">Frequently asked questions</h2>
     <div class="reveal">
       <div class="faq-item"><button type="button" class="faq-q" aria-expanded="false">How long does implementation take?<span aria-hidden="true">+</span></button><div class="faq-a">Typical Starter deployments go live in 4–8 weeks. Growth and multi-branch projects run 8–16 weeks depending on data migration and integrations. Enterprise timelines are scoped in the proposal.</div></div>
-      <div class="faq-item"><button type="button" class="faq-q" aria-expanded="false">Do you support multi-branch operations?<span aria-hidden="true">+</span></button><div class="faq-a">Yes. Our systems are designed for Philippine multi-branch reality — NCR, Visayas, and Mindanao hubs with shared inventory, consolidated reporting, and role-based access per location.</div></div>
+      <div class="faq-item"><button type="button" class="faq-q" aria-expanded="false">Do you support multi-branch operations?<span aria-hidden="true">+</span></button><div class="faq-a">Yes. Our systems are designed for Philippine multi-branch reality — Davao HQ, Manila (QC), and Cebu (Mabolo) hubs with shared inventory, consolidated reporting, and role-based access per location.</div></div>
       <div class="faq-item"><button type="button" class="faq-q" aria-expanded="false">What cloud platforms do you use?<span aria-hidden="true">+</span></button><div class="faq-a">AWS, Azure, and Google Cloud Platform. We also support hybrid and multi-cloud architectures and help you choose the right mix for cost and compliance.</div></div>
       <div class="faq-item"><button type="button" class="faq-q" aria-expanded="false">How do you handle security and compliance?<span aria-hidden="true">+</span></button><div class="faq-a">Security is built into every layer. We follow SOC 2, GDPR, and HIPAA frameworks as needed — encryption at rest and in transit, RBAC, and audit logging.</div></div>
       <div class="faq-item"><button type="button" class="faq-q" aria-expanded="false">What does managed support include?<span aria-hidden="true">+</span></button><div class="faq-a">24/7 monitoring, incident response with defined SLAs (as fast as 15 minutes for critical issues), proactive maintenance, performance optimization, and quarterly business reviews.</div></div>
@@ -481,29 +504,68 @@ a:focus-visible,button:focus-visible,input:focus-visible,textarea:focus-visible,
 </section>
 
 <section id="about" aria-label="About Tophcomm Systems">
-  <div class="wrap" style="max-width:720px">
-    <p class="eyebrow reveal">About</p>
-    <div class="reveal about-brand" style="margin-bottom:1rem">
-      <img src="tophcomm-assets/tophcomm-logo.jpg" alt="Tophcomm Systems" width="88" height="88" style="object-fit:contain;border-radius:14px;background:#fff;padding:6px"/>
-      <div>
-        <h2 style="margin:0">Tophcomm Systems</h2>
-        <p style="color:var(--muted);font-size:.9rem;margin-top:.25rem">FS Softwares · Integrated Innovation</p>
+  <div class="wrap">
+    <p class="eyebrow reveal" style="text-align:center">About</p>
+    <h2 class="reveal" style="text-align:center;color:var(--green);font-size:clamp(1.25rem,3vw,1.75rem);font-weight:600">FS Softwares &amp; TophComm Systems</h2>
+    <p class="reveal" style="text-align:center;color:var(--muted);max-width:40rem;margin:0.75rem auto 2.5rem;line-height:1.65;font-size:1rem">
+      We're a Philippine-based software company building enterprise-grade business management systems with nationwide reach and local presence.
+    </p>
+
+    <div class="about-layout reveal">
+      <div class="about-story">
+        <div class="about-brand" style="margin-bottom:1.25rem">
+          <img src="tophcomm-assets/tophcomm-logo.jpg" alt="Tophcomm Systems" width="72" height="72" style="object-fit:contain;border-radius:12px;background:#fff;padding:5px"/>
+          <div>
+            <h3 style="margin:0;font-size:1.15rem">Our Story</h3>
+            <p style="color:var(--muted);font-size:.85rem;margin-top:.2rem">Born in Mindanao · Built for the nation</p>
+          </div>
+        </div>
+        <p style="color:#c8c8c8;line-height:1.7;margin-bottom:1rem;font-size:.95rem">
+          <strong style="color:#fff">TophComm Systems</strong> is the development powerhouse behind
+          <strong style="color:var(--green)">FS Softwares</strong>.
+          Founded in Mindanao and now serving the entire Philippines, we're on a mission to democratize enterprise-grade business systems for Philippine SMEs and enterprises.
+        </p>
+        <p style="color:#c8c8c8;line-height:1.7;margin-bottom:1rem;font-size:.95rem">
+          We started with a simple observation: <strong style="color:#fff">73% of Philippine SMEs</strong> still run critical operations from spreadsheets.
+          No real-time visibility. No data integration. No operational control across multiple locations.
+        </p>
+        <p style="color:#c8c8c8;line-height:1.7;font-size:.95rem">
+          So we built FS Softwares—not just software installations, but a pathway to
+          <strong style="color:#fff">operational ownership</strong>. Every system comes with pre-transfer knowledge transfer, ensuring your people own the solution, not just IT.
+        </p>
+        <div class="about-brand" style="margin-top:1.75rem;align-items:flex-start">
+          <img src="tophcomm-assets/lssbb-badge.jpg" alt="Six Sigma Global Institute LSSBB Certified — ID 39580107" class="badge-lssbb" width="100" height="100"/>
+          <div>
+            <strong style="display:block;margin-bottom:.35rem">LSSBB Certified</strong>
+            <p style="font-size:.85rem;color:var(--muted);line-height:1.5;max-width:22rem">
+              Six Sigma Global Institute · Lean Six Sigma Black Belt<br/>
+              Credential ID 39580107 · SSGI
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <div class="about-cards">
+        <div class="about-card">
+          <div class="about-card-icon" aria-hidden="true">◎</div>
+          <h3>Our Mission</h3>
+          <p>Democratize enterprise-grade business systems for Philippine SMEs and enterprises</p>
+        </div>
+        <div class="about-card">
+          <div class="about-card-icon" aria-hidden="true">◇</div>
+          <h3>Our Vision</h3>
+          <p>Every Philippine business, from Batanes to Jolo, running on systems that work</p>
+        </div>
+        <div class="about-card">
+          <div class="about-card-icon" aria-hidden="true">⚡</div>
+          <h3>Our Approach</h3>
+          <p>Find the bottleneck. Fix the workflow. See the numbers. Build ownership.</p>
+        </div>
       </div>
     </div>
-    <h2 class="reveal" style="font-size:clamp(1.4rem,3vw,2rem)">Born in Mindanao. Built for the Philippines.</h2>
-    <p class="reveal" style="color:var(--muted);margin-top:1.25rem;line-height:1.7">
-      Tophcomm Systems and FS Softwares deliver Pattern-B architecture systems — Tauri, Flutter, API —
-      with pre-transfer knowledge so your team owns the system, not just IT. Leadership: Fritz Suarez, Founder.
-    </p>
-    <div class="reveal about-brand" style="margin-top:1.75rem;align-items:flex-start">
-      <img src="tophcomm-assets/lssbb-badge.jpg" alt="Six Sigma Global Institute LSSBB Certified — ID 39580107" class="badge-lssbb" width="120" height="120"/>
-      <div>
-        <strong style="display:block;margin-bottom:.35rem">LSSBB Certified</strong>
-        <p style="font-size:.85rem;color:var(--muted);line-height:1.5;max-width:22rem">
-          Six Sigma Global Institute · Lean Six Sigma Black Belt<br/>
-          Credential ID 39580107 · SSGI
-        </p>
-      </div>
+
+    <div class="reveal" style="text-align:center;margin-top:2.5rem">
+      <a class="btn btn-solid" href="https://fs-library.sassy-goat-1694.chatgpt.site/" target="_blank" rel="noopener noreferrer">Open Discovery Portal →</a>
     </div>
   </div>
 </section>
@@ -520,7 +582,7 @@ a:focus-visible,button:focus-visible,input:focus-visible,textarea:focus-visible,
       </div>
       <div class="field"><label for="cf-company">Company</label><input type="text" id="cf-company" name="company" placeholder="Company name" autocomplete="organization"/></div>
       <div class="field"><label for="cf-hub">Hub preference</label>
-        <select id="cf-hub" name="hub"><option value="">Any / nationwide</option><option>NCR</option><option>Cebu</option><option>Davao</option></select>
+        <select id="cf-hub" name="hub"><option value="">Any / nationwide</option><option value="Davao">Davao HQ</option><option value="Manila">Manila (Opening @ QC)</option><option value="Cebu">Cebu (Opening @ Mabolo)</option></select>
       </div>
       <div class="field"><label for="cf-message">Message</label><textarea id="cf-message" name="message" placeholder="What systems are you looking to improve?"></textarea></div>
       <button type="submit" class="btn btn-solid" style="width:100%">Send inquiry</button>
@@ -536,7 +598,7 @@ a:focus-visible,button:focus-visible,input:focus-visible,textarea:focus-visible,
   <div class="wrap">
     <div>
       <strong style="color:#fff;display:block;margin-bottom:.35rem">Tophcomm Systems</strong>
-      FS Softwares · Nationwide PH<br/>NCR · Cebu · Davao
+      FS Softwares · Nationwide PH<br/>Davao HQ · Manila (QC) · Cebu (Mabolo)
       <div class="footer-brands">
         <img src="tophcomm-assets/tophcomm-logo.jpg" alt="Tophcomm Systems" height="40" width="40"/>
         <img src="tophcomm-assets/fs-softwares-logo.jpg" alt="FS Softwares" height="40" width="40"/>
@@ -544,7 +606,7 @@ a:focus-visible,button:focus-visible,input:focus-visible,textarea:focus-visible,
       </div>
     </div>
     <div class="cols">
-      <div><h5>Product</h5><ul><li><a href="#solutions">Solutions</a></li><li><a href="#pricing">Pricing</a></li><li><a href="#/digicard" data-route="digicard">DigiCard</a></li></ul></div>
+      <div><h5>Product</h5><ul><li><a href="#solutions">Solutions</a></li><li><a href="https://fs-library.sassy-goat-1694.chatgpt.site/" target="_blank" rel="noopener noreferrer">Discovery Portal</a></li><li><a href="#pricing">Pricing</a></li><li><a href="#/digicard" data-route="digicard">DigiCard</a></li></ul></div>
       <div><h5>Company</h5><ul><li><a href="#about">About</a></li><li><a href="#hubs">Hubs</a></li><li><a href="#process">Process</a></li></ul></div>
       <div><h5>Support</h5><ul><li><a href="#faq">FAQ</a></li><li><a href="#contact">Contact</a></li><li><a href="#/client" data-route="client">Client Portal</a></li></ul></div>
       <div><h5>Legal</h5><ul><li>© 2026 Tophcomm</li><li>Standalone build</li></ul></div>
