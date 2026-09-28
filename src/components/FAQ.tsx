@@ -27,6 +27,10 @@ const faqs = [
     question: 'Can you work with our existing development team?',
     answer: 'Yes, we frequently embed with client teams. We can augment your existing developers, provide architecture leadership, or operate as a fully managed extension of your engineering department. We adapt to your workflows, tools, and communication style.',
   },
+  {
+    question: 'What is FS Softwares and how can I explore your products?',
+    answer: 'FS Softwares is our dedicated software division with 24+ enterprise products across intake systems, workflow automation, data analytics, cloud infrastructure, cybersecurity, and systems integration. You can explore our full product catalog and try demos at our Discovery Portal.',
+  },
 ];
 
 export default function FAQ() {
@@ -86,6 +90,31 @@ export default function FAQ() {
               </AnimatePresence>
             </motion.div>
           ))}
+        </div>
+
+        {/* Discovery Link */}
+        <div className="mt-12 flex flex-col sm:flex-row items-center justify-center gap-4">
+          <a
+            href="#contact"
+            className="inline-flex items-center gap-2 px-6 py-3 rounded-full border border-black/20 text-black font-medium text-sm hover:bg-black hover:text-white transition-all"
+          >
+            Get in touch
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+              <path d="M5 12h14M12 5l7 7-7 7"/>
+            </svg>
+          </a>
+          <a
+            href="https://member-tophcomm-fssoftwares.netlify.app/#/intake"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-black text-white font-medium text-sm hover:bg-accent transition-all"
+          >
+            <span className="w-2 h-2 bg-green-400 rounded-full animate-pulse" />
+            Explore FS Softwares
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+              <path d="M7 17L17 7M17 7H7M17 7V17"/>
+            </svg>
+          </a>
         </div>
       </div>
     </section>

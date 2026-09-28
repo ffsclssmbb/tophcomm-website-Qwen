@@ -148,6 +148,22 @@ export default function Hero() {
             </div>
           </div>
         </div>
+
+        {/* Discovery Link Button */}
+        <div className="absolute bottom-12 left-12 hidden md:block">
+          <a
+            href="https://member-tophcomm-fssoftwares.netlify.app/#/intake"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center gap-3 px-6 py-3 bg-white/10 backdrop-blur-md border border-white/20 rounded-full text-white font-medium hover:bg-white/20 transition-all"
+          >
+            <span className="w-2 h-2 bg-green-400 rounded-full animate-pulse" />
+            Explore FS Softwares
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+              <path d="M7 17L17 7M17 7H7M17 7V17" />
+            </svg>
+          </a>
+        </div>
       </motion.div>
     </section>
   );

@@ -1,5 +1,6 @@
 import { motion } from 'framer-motion';
 import { ArrowUpRight, Maximize2, Zap, Layout } from 'lucide-react';
+import { softwareCategories, softwareProducts } from '../data/softwareCatalog';
 
 const services = [
   {
@@ -63,6 +64,72 @@ export default function Services() {
             </motion.div>
           ))}
         </div>
+
+        {/* FS Softwares Product Catalog */}
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.8, delay: 0.4 }}
+          className="mt-24 md:mt-32"
+        >
+          <div className="mb-12">
+            <p className="text-xs uppercase tracking-wider text-gray-500 mb-4">FS Softwares Division</p>
+            <h3 className="font-display text-3xl md:text-4xl font-bold text-black mb-4">
+              {softwareProducts.length}+ Enterprise Software Products
+            </h3>
+            <p className="text-base text-gray-600 max-w-2xl">
+              Our dedicated software division builds specialized enterprise tools across six core categories.
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {softwareCategories.map((category, i) => {
+              const categoryProducts = softwareProducts.filter(p => p.category === category.id);
+              return (
+                <motion.div
+                  key={category.id}
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.6, delay: i * 0.1 }}
+                  className="bg-gray-50 rounded-2xl p-6 hover:bg-gray-100 transition-colors"
+                >
+                  <h4 className="font-display text-xl font-semibold text-black mb-2">
+                    {category.name}
+                  </h4>
+                  <p className="text-sm text-gray-600 mb-4">{category.description}</p>
+                  <div className="space-y-2">
+                    {categoryProducts.slice(0, 3).map((product) => (
+                      <div key={product.id} className="flex items-center gap-2 text-sm text-gray-700">
+                        <div className="w-1.5 h-1.5 rounded-full bg-accent" />
+                        {product.name}
+                      </div>
+                    ))}
+                    {categoryProducts.length > 3 && (
+                      <div className="text-xs text-gray-500 pt-1">
+                        +{categoryProducts.length - 3} more products
+                      </div>
+                    )}
+                  </div>
+                </motion.div>
+              );
+            })}
+          </div>
+
+          {/* Discovery Link */}
+          <div className="mt-12 text-center">
+            <a
+              href="https://member-tophcomm-fssoftwares.netlify.app/#/intake"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-2 px-8 py-4 bg-black text-white rounded-full font-semibold hover:bg-accent transition-colors"
+            >
+              Explore FS Softwares
+              <ArrowUpRight size={20} />
+            </a>
+          </div>
+        </motion.div>
       </div>
     </section>
   );

@@ -3,6 +3,7 @@ import Lenis from 'lenis';
 import Navbar from './components/Navbar';
 import Services from './components/Services';
 import Projects from './components/Projects';
+import Integration from './components/Integration';
 import Innovation from './components/Innovation';
 import About from './components/About';
 import Team from './components/Team';
@@ -56,6 +57,7 @@ function App() {
         </Suspense>
         <Services />
         <Projects />
+        <Integration />
         <Innovation />
         <About />
         <Team />
