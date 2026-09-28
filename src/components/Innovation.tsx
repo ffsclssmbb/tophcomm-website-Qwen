@@ -19,7 +19,7 @@ export default function Innovation() {
   };
 
   return (
-    <section id="innovation" className="relative py-32 overflow-hidden">
+    <section id="innovation" className="relative py-32 overflow-hidden" aria-label="Our innovation divisions">
       <div className="absolute inset-0 grid-pattern opacity-20" />
       <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[800px] h-[400px] bg-accent/5 rounded-full blur-[120px]" />
 

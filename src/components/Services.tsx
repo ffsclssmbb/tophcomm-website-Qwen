@@ -81,7 +81,7 @@ export default function Services() {
   };
 
   return (
-    <section id="services" className="relative py-32 overflow-hidden">
+    <section id="services" className="relative py-32 overflow-hidden" aria-label="Our services">
       <div className="absolute inset-0 grid-pattern opacity-30" />
       
       <div className="relative max-w-7xl mx-auto px-6 lg:px-8">

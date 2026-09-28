@@ -13,7 +13,7 @@ export default function Integration() {
   const [active, setActive] = useState<string | null>(null);
 
   return (
-    <section id="integration" className="relative py-32 overflow-hidden">
+    <section id="integration" className="relative py-32 overflow-hidden" aria-label="Systems integration diagram">
       <div className="absolute inset-0 bg-gradient-to-b from-transparent via-accent/[0.02] to-transparent" />
 
       <div className="relative max-w-7xl mx-auto px-6 lg:px-8">

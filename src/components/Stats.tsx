@@ -1,12 +1,12 @@
 import { useEffect, useRef, useState } from 'react';
 
 const stats = [
-  { value: 150, suffix: '+', label: 'Projects Delivered', icon: '📦' },
-  { value: 80, suffix: '+', label: 'Enterprise Clients', icon: '🏢' },
-  { value: 99.9, suffix: '%', label: 'System Uptime', icon: '⚡' },
-  { value: 24, suffix: '/7', label: 'Support Coverage', icon: '🛡️' },
-  { value: 12, suffix: '+', label: 'Technologies', icon: '🔧' },
-  { value: 5, suffix: ' yrs', label: 'Industry Experience', icon: '📈' },
+  { value: 150, suffix: '+', label: 'Projects Delivered', icon: '📦', description: 'Successfully completed integration and development projects' },
+  { value: 80, suffix: '+', label: 'Enterprise Clients', icon: '🏢', description: 'Organizations trust us with their critical systems' },
+  { value: 99.9, suffix: '%', label: 'System Uptime', icon: '⚡', description: 'Reliability across all managed infrastructure' },
+  { value: 24, suffix: '/7', label: 'Support Coverage', icon: '🛡️', description: 'Round-the-clock monitoring and incident response' },
+  { value: 12, suffix: '+', label: 'Technologies', icon: '🔧', description: 'Platforms and frameworks in our expertise stack' },
+  { value: 5, suffix: ' yrs', label: 'Industry Experience', icon: '📈', description: 'Years delivering enterprise solutions' },
 ];
 
 function AnimatedCounter({ target, suffix, inView }: { target: number; suffix: string; inView: boolean }) {
@@ -48,12 +48,12 @@ export default function Stats() {
   }, []);
 
   return (
-    <section id="stats" className="relative py-32 overflow-hidden">
-      <div className="absolute inset-0 bg-gradient-to-b from-transparent via-accent/[0.02] to-transparent" />
+    <section id="stats" className="relative py-32 overflow-hidden" aria-label="Company statistics">
+      <div className="absolute inset-0 bg-gradient-to-b from-transparent via-accent/[0.02] to-transparent" aria-hidden="true" />
       
       <div ref={ref} className="relative max-w-7xl mx-auto px-6 lg:px-8">
         {/* Marquee banner */}
-        <div className="reveal mb-20 overflow-hidden border-y border-white/5 py-6">
+        <div className="reveal mb-20 overflow-hidden border-y border-white/5 py-6" aria-hidden="true">
           <div className="flex marquee-track" style={{ width: 'max-content' }}>
             {[...Array(2)].map((_, setIdx) => (
               <div key={setIdx} className="flex items-center gap-8 px-4">
@@ -70,14 +70,16 @@ export default function Stats() {
         </div>
 
         {/* Stats grid */}
-        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4">
+        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4" role="list">
           {stats.map((stat, i) => (
             <div
               key={i}
               className="reveal glass-card p-6 text-center group"
               style={{ transitionDelay: `${i * 100}ms` }}
+              role="listitem"
+              title={stat.description}
             >
-              <div className="text-2xl mb-3">{stat.icon}</div>
+              <div className="text-2xl mb-3" aria-hidden="true">{stat.icon}</div>
               <div className="text-2xl md:text-3xl font-heading font-bold text-white mb-1 group-hover:text-accent-light transition-colors">
                 <AnimatedCounter target={stat.value} suffix={stat.suffix} inView={inView} />
               </div>

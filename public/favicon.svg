@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#1a1a2e"/>
+      <stop offset="100%" style="stop-color:#0d0d0d"/>
+    </linearGradient>
+    <linearGradient id="accent" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#3b82f6"/>
+      <stop offset="100%" style="stop-color:#60a5fa"/>
+    </linearGradient>
+  </defs>
+  <rect width="512" height="512" rx="96" fill="url(#bg)"/>
+  <g transform="translate(256,220)" fill="none" stroke="url(#accent)" stroke-width="18" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M0-100L-87-50L0 0L87-50L0-100Z" opacity="0.9"/>
+    <path d="M-87 30L0 80L87 30" opacity="0.7"/>
+    <path d="M-87-10L0 40L87-10" opacity="0.5"/>
+  </g>
+  <text x="256" y="380" text-anchor="middle" font-family="Arial,sans-serif" font-weight="700" font-size="48" fill="#ffffff" letter-spacing="6">TOPHCOMM</text>
+  <text x="256" y="420" text-anchor="middle" font-family="Arial,sans-serif" font-weight="400" font-size="24" fill="#60a5fa" letter-spacing="8">SYSTEMS</text>
+</svg>

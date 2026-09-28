@@ -35,7 +35,7 @@ export default function Process() {
   const [activeStep, setActiveStep] = useState(0);
 
   return (
-    <section id="process" className="relative py-32 overflow-hidden">
+    <section id="process" className="relative py-32 overflow-hidden" aria-label="Our process">
       <div className="absolute inset-0 bg-gradient-to-b from-transparent via-accent/[0.015] to-transparent" />
 
       <div className="relative max-w-7xl mx-auto px-6 lg:px-8">

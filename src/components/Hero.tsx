@@ -14,6 +14,7 @@ export default function Hero() {
 
     let animId: number;
     let time = 0;
+    let prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
     const resize = () => {
       canvas.width = window.innerWidth;
@@ -22,8 +23,13 @@ export default function Hero() {
     resize();
     window.addEventListener('resize', resize);
 
+    const motionQuery = window.matchMedia('(prefers-reduced-motion: reduce)');
+    const handleMotionChange = () => { prefersReducedMotion = motionQuery.matches; };
+    motionQuery.addEventListener('change', handleMotionChange);
+
     const particles: { x: number; y: number; vx: number; vy: number; size: number; opacity: number }[] = [];
-    for (let i = 0; i < 80; i++) {
+    const particleCount = prefersReducedMotion ? 20 : 80;
+    for (let i = 0; i < particleCount; i++) {
       particles.push({
         x: Math.random() * canvas.width,
         y: Math.random() * canvas.height,
@@ -35,7 +41,7 @@ export default function Hero() {
     }
 
     const draw = () => {
-      time += 0.005;
+      time += prefersReducedMotion ? 0 : 0.005;
       ctx.clearRect(0, 0, canvas.width, canvas.height);
 
       // Diagonal streaks
@@ -59,12 +65,14 @@ export default function Hero() {
 
       // Particles
       particles.forEach((p) => {
-        p.x += p.vx;
-        p.y += p.vy;
-        if (p.x < 0) p.x = canvas.width;
-        if (p.x > canvas.width) p.x = 0;
-        if (p.y < 0) p.y = canvas.height;
-        if (p.y > canvas.height) p.y = 0;
+        if (!prefersReducedMotion) {
+          p.x += p.vx;
+          p.y += p.vy;
+          if (p.x < 0) p.x = canvas.width;
+          if (p.x > canvas.width) p.x = 0;
+          if (p.y < 0) p.y = canvas.height;
+          if (p.y > canvas.height) p.y = 0;
+        }
 
         ctx.beginPath();
         ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
@@ -96,6 +104,7 @@ export default function Hero() {
     return () => {
       cancelAnimationFrame(animId);
       window.removeEventListener('resize', resize);
+      motionQuery.removeEventListener('change', handleMotionChange);
     };
   }, []);
 
@@ -156,20 +165,20 @@ export default function Hero() {
   };
 
   return (
-    <section id="hero" ref={heroRef} className="relative min-h-screen flex items-center overflow-hidden">
-      <canvas ref={canvasRef} className="absolute inset-0 z-0" />
-      <div className="absolute inset-0 grid-pattern opacity-50 z-0" />
+    <section id="hero" ref={heroRef} className="relative min-h-screen flex items-center overflow-hidden" aria-label="Hero">
+      <canvas ref={canvasRef} className="absolute inset-0 z-0" aria-hidden="true" />
+      <div className="absolute inset-0 grid-pattern opacity-50 z-0" aria-hidden="true" />
       
       {/* Gradient orbs */}
-      <div className="absolute top-1/4 -left-32 w-96 h-96 bg-accent/10 rounded-full blur-[100px]" />
-      <div className="absolute bottom-1/4 -right-32 w-96 h-96 bg-blue-900/20 rounded-full blur-[100px]" />
+      <div className="absolute top-1/4 -left-32 w-96 h-96 bg-accent/10 rounded-full blur-[100px]" aria-hidden="true" />
+      <div className="absolute bottom-1/4 -right-32 w-96 h-96 bg-blue-900/20 rounded-full blur-[100px]" aria-hidden="true" />
 
       <div className="relative z-10 max-w-7xl mx-auto px-6 lg:px-8 w-full pt-32 pb-20">
         <div className="grid lg:grid-cols-2 gap-16 items-center">
           {/* Left: Text */}
           <div>
             <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-accent/10 border border-accent/20 mb-8">
-              <span className="w-2 h-2 rounded-full bg-green-neon animate-pulse" />
+              <span className="w-2 h-2 rounded-full bg-green-neon animate-pulse" aria-hidden="true" />
               <span className="text-sm text-accent-light font-medium">Systems Integration Experts</span>
             </div>
 
@@ -196,7 +205,7 @@ export default function Hero() {
                 className="px-8 py-4 rounded-full bg-accent text-white font-semibold text-base hover:bg-accent-light transition-all duration-300 glow-blue magnetic-btn inline-flex items-center gap-2"
               >
                 Start a Project
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
                   <path d="M5 12h14M12 5l7 7-7 7"/>
                 </svg>
               </a>
@@ -209,17 +218,17 @@ export default function Hero() {
             </div>
 
             {/* Stats row */}
-            <div className="flex gap-8 md:gap-12">
+            <div className="flex gap-8 md:gap-12" aria-label="Key statistics">
               <div>
-                <div className="text-3xl font-heading font-bold text-white">{counters.projects}+</div>
+                <div className="text-3xl font-heading font-bold text-white" aria-label={`${counters.projects}+ projects delivered`}>{counters.projects}+</div>
                 <div className="text-sm text-text-muted mt-1">Projects Delivered</div>
               </div>
               <div>
-                <div className="text-3xl font-heading font-bold text-white">{counters.clients}+</div>
+                <div className="text-3xl font-heading font-bold text-white" aria-label={`${counters.clients}+ enterprise clients`}>{counters.clients}+</div>
                 <div className="text-sm text-text-muted mt-1">Enterprise Clients</div>
               </div>
               <div>
-                <div className="text-3xl font-heading font-bold text-white">{counters.uptime}%</div>
+                <div className="text-3xl font-heading font-bold text-white" aria-label={`${counters.uptime}% system uptime`}>{counters.uptime}%</div>
                 <div className="text-sm text-text-muted mt-1">System Uptime</div>
               </div>
             </div>
@@ -230,6 +239,7 @@ export default function Hero() {
             className="relative h-[500px] hidden lg:block"
             onMouseMove={handleTilt}
             onMouseLeave={resetTilt}
+            aria-hidden="true"
           >
             {/* Card 1: API */}
             <div className="tilt-card absolute top-8 left-8 w-56 h-40 glass-card p-5 float-animation cursor-default" style={{ zIndex: 3 }}>
@@ -311,7 +321,7 @@ export default function Hero() {
         </div>
 
         {/* Rotating badge */}
-        <div className="absolute bottom-12 right-8 hidden xl:block">
+        <div className="absolute bottom-12 right-8 hidden xl:block" aria-hidden="true">
           <div className="relative w-28 h-28">
             <svg viewBox="0 0 120 120" className="w-full h-full animate-[spin_20s_linear_infinite]">
               <defs>
