@@ -1,5 +1,4 @@
 import { useEffect, useState, lazy, Suspense } from 'react';
-import Lenis from 'lenis';
 import Navbar from './components/Navbar';
 import Services from './components/Services';
 import Projects from './components/Projects';
@@ -14,45 +13,51 @@ import Pricing from './components/Pricing';
 import Contact from './components/Contact';
 import Footer from './components/Footer';
 
-// Lazy load Hero (contains Three.js/R3F - heavy)
 const Hero = lazy(() => import('./components/Hero'));
 
 function App() {
+  const [mounted, setMounted] = useState(false);
+
   useEffect(() => {
-    const lenisInstance = new Lenis({
-      lerp: 0.1,
-      duration: 1.5,
-      smoothWheel: true,
-    });
-
-    function raf(time: number) {
-      lenisInstance.raf(time);
-      requestAnimationFrame(raf);
-    }
-
-    requestAnimationFrame(raf);
-
-    // Hide loader
+    setMounted(true);
     const loader = document.getElementById('app-loader');
     if (loader) {
       setTimeout(() => {
         loader.classList.add('hidden');
         setTimeout(() => loader.remove(), 600);
-      }, 500);
+      }, 400);
     }
 
+    // Intersection observer for reveal animations
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('visible');
+          }
+        });
+      },
+      { threshold: 0.1, rootMargin: '0px 0px -60px 0px' }
+    );
+
+    const timer = setTimeout(() => {
+      document.querySelectorAll('.reveal').forEach((el) => observer.observe(el));
+    }, 100);
+
     return () => {
-      lenisInstance.destroy();
+      clearTimeout(timer);
+      observer.disconnect();
     };
   }, []);
 
   return (
-    <div className="bg-base min-h-screen">
+    <div className="bg-bg min-h-screen text-text relative">
+      <div className="grain" aria-hidden="true" />
       <Navbar />
       <main>
         <Suspense fallback={
-          <div className="h-screen w-full bg-base flex items-center justify-center">
-            <div className="w-10 h-10 border-2 border-white/10 border-t-accent rounded-full animate-spin" />
+          <div className="h-screen w-full bg-bg flex items-center justify-center">
+            <div className="w-8 h-8 border border-white/20 border-t-white/70 rounded-full animate-spin" />
           </div>
         }>
           <Hero />

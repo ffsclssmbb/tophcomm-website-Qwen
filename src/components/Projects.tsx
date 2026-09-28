@@ -49,7 +49,7 @@ export default function Projects() {
   };
 
   return (
-    <section id="projects" className="bg-white py-24 md:py-32 px-6 md:px-12 overflow-hidden">
+    <section id="projects" className="bg-bg py-24 md:py-32 px-6 md:px-12 overflow-hidden">
       <div className="max-w-[1400px] mx-auto">
         {/* Header */}
         <div className="flex items-end justify-between mb-16 md:mb-24">
@@ -59,8 +59,8 @@ export default function Projects() {
             viewport={{ once: true }}
             transition={{ duration: 0.8 }}
           >
-            <p className="text-xs uppercase tracking-wider text-gray-500 mb-4">Latest Projects</p>
-            <h2 className="font-display text-4xl md:text-6xl font-bold text-black">
+            <p className="text-xs uppercase tracking-wider text-muted mb-4">Latest Projects</p>
+            <h2 className="font-sans text-4xl md:text-6xl font-medium text-text tracking-tight">
               Case Studies
             </h2>
           </motion.div>

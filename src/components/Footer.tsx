@@ -16,7 +16,7 @@ export default function Footer() {
   };
 
   return (
-    <footer ref={containerRef} className="relative bg-black text-white overflow-hidden">
+    <footer ref={containerRef} className="relative bg-bg text-text overflow-hidden">
       <motion.div style={{ y }} className="py-24 md:py-32 px-6 md:px-12">
         <div className="max-w-[1400px] mx-auto">
           {/* Scroll to Top */}
@@ -35,11 +35,11 @@ export default function Footer() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.8 }}
-              className="font-display text-5xl md:text-7xl lg:text-8xl font-bold leading-tight mb-8"
+              className="font-sans text-5xl md:text-7xl lg:text-8xl font-medium leading-tight mb-8 tracking-tight"
             >
               Let's shape
               <br />
-              something new
+              <em className="font-serif italic text-muted">something new</em>
             </motion.h2>
             <motion.a
               href="mailto:hello@tophcomm.systems"
@@ -47,7 +47,8 @@ export default function Footer() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.8, delay: 0.2 }}
-              className="inline-flex items-center gap-3 px-8 py-4 bg-white text-black rounded-full font-semibold hover:bg-accent hover:text-white transition-colors"
+              className="btn btn-solid"
+              style={{ height: 48, padding: '0 24px', fontSize: 16 }}
             >
               Contact us
               <ArrowUpRight size={20} />
@@ -57,21 +58,21 @@ export default function Footer() {
           {/* Bottom */}
           <div className="border-t border-white/10 pt-8 flex flex-col md:flex-row items-start md:items-center justify-between gap-6">
             <div>
-              <p className="text-sm text-gray-400">
+              <p className="text-sm text-muted">
                 © {new Date().getFullYear()} Tophcomm Systems. All rights reserved.
               </p>
             </div>
             <div className="flex items-center gap-6">
-              <a href="#" className="text-sm text-gray-400 hover:text-white transition-colors">
+              <a href="#" className="text-sm text-muted hover:text-text transition-colors">
                 Privacy Policy
               </a>
-              <a href="#" className="text-sm text-gray-400 hover:text-white transition-colors">
+              <a href="#" className="text-sm text-muted hover:text-text transition-colors">
                 Terms of Service
               </a>
-              <a href="#" className="text-sm text-gray-400 hover:text-white transition-colors">
+              <a href="#" className="text-sm text-muted hover:text-text transition-colors">
                 LinkedIn
               </a>
-              <a href="#" className="text-sm text-gray-400 hover:text-white transition-colors">
+              <a href="#" className="text-sm text-muted hover:text-text transition-colors">
                 Twitter
               </a>
             </div>

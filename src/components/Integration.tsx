@@ -13,7 +13,7 @@ const integrationFlow = [
 
 export default function Integration() {
   return (
-    <section id="integration" className="bg-white py-24 md:py-32 px-6 md:px-12">
+    <section id="integration" className="bg-bg py-24 md:py-32 px-6 md:px-12">
       <div className="max-w-[1400px] mx-auto">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
@@ -22,8 +22,8 @@ export default function Integration() {
           transition={{ duration: 0.8 }}
           className="mb-16 md:mb-24"
         >
-          <p className="text-xs uppercase tracking-wider text-gray-500 mb-4">How It Connects</p>
-          <h2 className="font-display text-4xl md:text-6xl font-bold text-black leading-tight mb-6">
+          <p className="text-xs uppercase tracking-wider text-muted mb-4">How It Connects</p>
+          <h2 className="font-sans text-4xl md:text-6xl font-medium text-text leading-tight tracking-tight mb-6">
             One Platform, Every System
           </h2>
           <p className="text-base md:text-lg text-gray-600 max-w-3xl">

@@ -25,16 +25,16 @@ const team = [
 
 export default function Team() {
   return (
-    <section id="team" className="bg-white py-24 md:py-32 overflow-hidden">
+    <section id="team" className="bg-bg py-24 md:py-32 overflow-hidden">
       {/* Marquee Banner */}
-      <div className="mb-16 md:mb-24 overflow-hidden border-y border-black/10 py-6">
+      <div className="mb-16 md:mb-24 overflow-hidden border-y border-white/10 py-6">
         <motion.div
           animate={{ x: ['0%', '-50%'] }}
           transition={{ duration: 20, repeat: Infinity, ease: 'linear' }}
           className="flex whitespace-nowrap"
         >
           {[...Array(10)].map((_, i) => (
-            <span key={i} className="font-display text-6xl md:text-8xl font-bold text-stroke mx-8">
+            <span key={i} className="font-sans text-6xl md:text-8xl font-medium text-white/10 mx-8 tracking-tight">
               MEET THE TEAM -
             </span>
           ))}
@@ -51,7 +51,7 @@ export default function Team() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.8, delay: i * 0.2 }}
-              className="group relative overflow-hidden rounded-2xl"
+              className="group relative overflow-hidden rounded-2xl glass"
             >
               <div className="aspect-[3/4] overflow-hidden">
                 <img
@@ -64,12 +64,12 @@ export default function Team() {
                 />
               </div>
               {/* Overlay */}
-              <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 flex items-end p-6">
+              <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 flex items-end p-6">
                 <div className="translate-y-4 group-hover:translate-y-0 transition-transform duration-500">
-                  <h3 className="font-display text-2xl font-bold text-white mb-1">
+                  <h3 className="font-sans text-2xl font-medium text-white mb-1 tracking-tight">
                     {member.name}
                   </h3>
-                  <p className="text-sm text-white/80">{member.role}</p>
+                  <p className="text-sm text-white/70">{member.role}</p>
                 </div>
               </div>
             </motion.div>

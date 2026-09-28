@@ -13,7 +13,7 @@ export default function Contact() {
   };
 
   return (
-    <section id="contact" className="bg-white py-24 md:py-32 px-6 md:px-12">
+    <section id="contact" className="bg-bg py-24 md:py-32 px-6 md:px-12">
       <div className="max-w-[1400px] mx-auto">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-16">
           {/* Left: Info */}
@@ -23,11 +23,11 @@ export default function Contact() {
             viewport={{ once: true }}
             transition={{ duration: 0.8 }}
           >
-            <p className="text-xs uppercase tracking-wider text-gray-500 mb-4">Get In Touch</p>
-            <h2 className="font-display text-4xl md:text-6xl font-bold text-black mb-6">
+            <p className="text-xs uppercase tracking-wider text-muted mb-4">Get In Touch</p>
+            <h2 className="font-sans text-4xl md:text-6xl font-medium text-text mb-6 tracking-tight">
               Let's Build Together
             </h2>
-            <p className="text-base text-gray-700 leading-relaxed mb-10">
+            <p className="text-base text-muted leading-relaxed mb-10">
               Ready to integrate your systems? Tell us about your project and we'll respond within 24 hours with a tailored proposal.
             </p>
 

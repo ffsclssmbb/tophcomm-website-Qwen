@@ -49,7 +49,7 @@ export default function About() {
   const y3 = useTransform(scrollYProgress, [0, 1], ['0%', '20%']);
 
   return (
-    <section id="about" ref={containerRef} className="bg-white py-24 md:py-32 px-6 md:px-12 overflow-hidden">
+    <section id="about" ref={containerRef} className="bg-bg py-24 md:py-32 px-6 md:px-12 overflow-hidden">
       <div className="max-w-[1400px] mx-auto">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-start mb-24">
           {/* Left: Sticky Text */}
@@ -60,17 +60,17 @@ export default function About() {
             transition={{ duration: 0.8 }}
             className="lg:sticky lg:top-32"
           >
-            <p className="text-xs uppercase tracking-wider text-gray-500 mb-4">Born in Mindanao | Built for the Philippines</p>
-            <h2 className="font-display text-4xl md:text-5xl font-bold text-black leading-tight mb-6">
+            <p className="text-xs uppercase tracking-wider text-muted mb-4">Born in Mindanao | Built for the Philippines</p>
+            <h2 className="font-sans text-4xl md:text-5xl font-medium text-text leading-tight tracking-tight mb-6">
               About FS Softwares & TophComm Systems
             </h2>
-            <p className="text-sm md:text-base text-gray-700 leading-relaxed mb-6">
+            <p className="text-sm md:text-base text-muted leading-relaxed mb-6">
               We're a Philippine-based software company building enterprise-grade business management systems with nationwide reach and local presence.
             </p>
-            <p className="text-sm md:text-base text-gray-700 leading-relaxed mb-6">
+            <p className="text-sm md:text-base text-muted leading-relaxed mb-6">
               TophComm Systems is the development powerhouse behind FS Softwares. Founded in Mindanao and now serving the entire Philippines, we're on a mission to democratize enterprise-grade business systems for Philippine SMEs and enterprises.
             </p>
-            <p className="text-sm md:text-base text-gray-700 leading-relaxed">
+            <p className="text-sm md:text-base text-muted leading-relaxed">
               We started with a simple observation: 73% of Philippine SMEs still run critical operations from spreadsheets. No real-time visibility. No data integration. No operational control across multiple locations. So we built FS Softwares—not just software installations, but a pathway to operational ownership.
             </p>
           </motion.div>

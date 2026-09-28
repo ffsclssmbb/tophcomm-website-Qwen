@@ -37,7 +37,7 @@ export default function FAQ() {
   const [openIndex, setOpenIndex] = useState<number | null>(null);
 
   return (
-    <section id="faq" className="bg-white py-24 md:py-32 px-6 md:px-12">
+    <section id="faq" className="bg-bg py-24 md:py-32 px-6 md:px-12">
       <div className="max-w-[1200px] mx-auto">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
@@ -46,8 +46,8 @@ export default function FAQ() {
           transition={{ duration: 0.8 }}
           className="mb-16 md:mb-24"
         >
-          <p className="text-xs uppercase tracking-wider text-gray-500 mb-4">FAQ</p>
-          <h2 className="font-display text-4xl md:text-6xl font-bold text-black">
+          <p className="text-xs uppercase tracking-wider text-muted mb-4">FAQ</p>
+          <h2 className="font-sans text-4xl md:text-6xl font-medium text-text tracking-tight">
             Frequently Asked Questions
           </h2>
         </motion.div>

@@ -117,7 +117,7 @@ const supportTiers = [
 
 export default function Pricing() {
   return (
-    <section id="pricing" className="bg-white py-24 md:py-32 px-6 md:px-12">
+    <section id="pricing" className="bg-bg py-24 md:py-32 px-6 md:px-12">
       <div className="max-w-[1400px] mx-auto">
         {/* Header */}
         <motion.div
@@ -127,11 +127,11 @@ export default function Pricing() {
           transition={{ duration: 0.8 }}
           className="text-center mb-16 md:mb-24"
         >
-          <p className="text-xs uppercase tracking-wider text-gray-500 mb-4">Transparent, Flexible, Scalable Pricing</p>
-          <h2 className="font-display text-4xl md:text-6xl font-bold text-black mb-6">
+          <p className="text-xs uppercase tracking-wider text-muted mb-4">Transparent, Flexible, Scalable Pricing</p>
+          <h2 className="font-sans text-4xl md:text-6xl font-medium text-text mb-6 tracking-tight">
             Pricing Built For Your Growth Stage
           </h2>
-          <p className="text-base md:text-lg text-gray-600 max-w-3xl mx-auto">
+          <p className="text-base md:text-lg text-muted max-w-3xl mx-auto">
             From startups to enterprises, we have flexible pricing models with 50/30/20 payment terms and nationwide implementation support.
           </p>
         </motion.div>

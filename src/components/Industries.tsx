@@ -96,7 +96,7 @@ const stats = [
 
 export default function Industries() {
   return (
-    <section id="industries" className="bg-white py-24 md:py-32 px-6 md:px-12">
+    <section id="industries" className="bg-bg py-24 md:py-32 px-6 md:px-12">
       <div className="max-w-[1400px] mx-auto">
         {/* Header */}
         <motion.div
@@ -106,11 +106,11 @@ export default function Industries() {
           transition={{ duration: 0.8 }}
           className="text-center mb-16 md:mb-24"
         >
-          <p className="text-xs uppercase tracking-wider text-gray-500 mb-4">12 Industry Verticals</p>
-          <h2 className="font-display text-4xl md:text-6xl font-bold text-black mb-6">
+          <p className="text-xs uppercase tracking-wider text-muted mb-4">12 Industry Verticals</p>
+          <h2 className="font-sans text-4xl md:text-6xl font-medium text-text mb-6 tracking-tight">
             Solutions Built For Every Philippine Industry
           </h2>
-          <p className="text-base md:text-lg text-gray-600 max-w-3xl mx-auto">
+          <p className="text-base md:text-lg text-muted max-w-3xl mx-auto">
             From telecommunications to specialized services, we serve 12 key industry verticals with tailored solutions and regional expertise.
           </p>
         </motion.div>
