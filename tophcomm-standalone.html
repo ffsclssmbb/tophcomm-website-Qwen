@@ -185,6 +185,20 @@ footer li{margin-bottom:.4rem}
 
 .toast{position:fixed;bottom:24px;left:50%;transform:translateX(-50%) translateY(80px);background:#111;border:1px solid rgba(255,255,255,.2);color:#fff;padding:12px 20px;border-radius:10px;font-size:.875rem;z-index:9999;opacity:0;transition:.35s;pointer-events:none}
 .toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
+
+.logo-img{width:36px;height:36px;object-fit:contain;border-radius:8px;background:#fff}
+.logo-text{display:flex;flex-direction:column;line-height:1.15;font-size:13px}
+.logo-text span{font-weight:400;opacity:.7;font-size:11px}
+.hero-banner{width:100%;max-width:720px;margin:0 auto 1.5rem;border-radius:16px;overflow:hidden;border:1px solid rgba(255,255,255,.12);box-shadow:0 20px 60px rgba(0,0,0,.45)}
+.hero-banner img{width:100%;height:auto;display:block;vertical-align:middle}
+.brand-mark{width:56px;height:56px;object-fit:contain;border-radius:12px;background:rgba(0,0,0,.35)}
+.fs-logo{width:72px;height:72px;object-fit:contain;border-radius:12px}
+.badge-lssbb{width:120px;height:auto;object-fit:contain;filter:drop-shadow(0 8px 20px rgba(0,0,0,.35))}
+.about-brand{display:flex;flex-wrap:wrap;align-items:center;gap:1.5rem;margin-top:1.75rem}
+.footer-brands{display:flex;flex-wrap:wrap;align-items:center;gap:1.25rem;margin-top:1rem}
+.footer-brands img{height:40px;width:auto;object-fit:contain;border-radius:6px;background:rgba(255,255,255,.06);padding:4px}
+.division .brand-row{display:flex;align-items:center;gap:1rem;margin-bottom:1rem}
+
 </style>
 </head>
 <body>
@@ -194,8 +208,8 @@ footer li{margin-bottom:.4rem}
 <nav class="nav" id="nav">
   <div class="nav-inner">
     <a href="#/" class="logo" data-route="home">
-      <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><g transform="rotate(-30 12 12)"><circle cx="7.3" cy="3.2" r="1.45"/><rect x="5.5" y="4.7" width="3.6" height="14.6" rx="1.8"/><rect x="14.9" y="4.7" width="3.6" height="14.6" rx="1.8"/><circle cx="16.7" cy="20.8" r="1.45"/></g></svg>
-      Tophcomm<span>.systems</span>
+      <img src="tophcomm-assets/tophcomm-logo.jpg" alt="Tophcomm Systems" class="logo-img" width="36" height="36"/>
+      <span class="logo-text">Tophcomm<span>.systems</span></span>
     </a>
     <div class="nav-links" id="home-nav">
       <a class="nav-pill" href="#services">Services</a>
@@ -231,6 +245,9 @@ footer li{margin-bottom:.4rem}
     <div class="badge">
       <svg width="14" height="14" viewBox="0 0 24 24" fill="#fff"><path d="M12 2.6c.55 0 .88.55 1.08 2.1.62 4.7 1.52 5.6 6.22 6.22 1.55.2 2.1.53 2.1 1.08s-.55.88-2.1 1.08c-4.7.62-5.6 1.52-6.22 6.22-.2 1.55-.53 2.1-1.08 2.1s-.88-.55-1.08-2.1c-.62-4.7-1.52-5.6-6.22-6.22C3.15 12.88 2.6 12.55 2.6 12s.55-.88 2.1-1.08c4.7-.62 5.6-1.52 6.22-6.22C11.12 3.15 11.45 2.6 12 2.6z"/></svg>
       Operational Business Infrastructure
+    </div>
+    <div class="hero-banner reveal">
+      <img src="tophcomm-assets/tophcomm-banner.jpg" alt="Tophcomm FS Softwares Systems — Integrated Innovation. Smart Solutions." width="720" height="405" loading="eager"/>
     </div>
     <h1>Build <em>business systems</em> that<br/>scale across the nation.</h1>
     <p class="lede">Deploy 20 enterprise-grade business management solutions across 12 Philippine industries. Born in Mindanao, built for the nation.</p>
@@ -279,14 +296,22 @@ footer li{margin-bottom:.4rem}
     </div>
     <div class="grid-2 reveal">
       <div class="division fs">
-        <p class="eyebrow" style="color:#4ade80">Systems Division</p>
-        <h3>FS Softwares</h3>
+        <div class="brand-row">
+          <img src="tophcomm-assets/fs-softwares-logo.jpg" alt="FS Softwares Systems" class="fs-logo" width="72" height="72"/>
+          <div>
+            <p class="eyebrow" style="color:#4ade80;margin:0">Systems Division</p>
+            <h3 style="margin:0.25rem 0 0">FS Softwares</h3>
+          </div>
+        </div>
         <p>Specialized enterprise tools — intake, workflow automation, and industry systems battle-tested in real operations.</p>
         <a class="btn btn-ghost" href="#pricing">View pricing</a>
       </div>
       <div class="division digi">
-        <span class="tag">Preview · hidden route</span>
-        <h3 style="margin-top:.75rem">DigiCard</h3>
+        <div class="brand-row">
+          <img src="tophcomm-assets/tophcomm-logo.jpg" alt="Tophcomm Systems" class="brand-mark" width="56" height="56"/>
+          <span class="tag">Preview · hidden route</span>
+        </div>
+        <h3 style="margin-top:.5rem">DigiCard</h3>
         <p>NFC-ready digital business cards with analytics, branding, and team management.</p>
         <a class="btn btn-ghost" href="#/digicard" data-route="digicard" style="border-color:rgba(249,115,22,.4);color:#fb923c">Open DigiCard →</a>
       </div>
@@ -404,11 +429,28 @@ footer li{margin-bottom:.4rem}
 <section id="about">
   <div class="wrap" style="max-width:720px">
     <p class="eyebrow reveal">About</p>
-    <h2 class="reveal">Born in Mindanao. Built for the Philippines.</h2>
+    <div class="reveal about-brand" style="margin-bottom:1rem">
+      <img src="tophcomm-assets/tophcomm-logo.jpg" alt="Tophcomm Systems" width="88" height="88" style="object-fit:contain;border-radius:14px;background:#fff;padding:6px"/>
+      <div>
+        <h2 style="margin:0">Tophcomm Systems</h2>
+        <p style="color:var(--muted);font-size:.9rem;margin-top:.25rem">FS Softwares · Integrated Innovation</p>
+      </div>
+    </div>
+    <h2 class="reveal" style="font-size:clamp(1.4rem,3vw,2rem)">Born in Mindanao. Built for the Philippines.</h2>
     <p class="reveal" style="color:var(--muted);margin-top:1.25rem;line-height:1.7">
       Tophcomm Systems and FS Softwares deliver Pattern-B architecture systems — Tauri, Flutter, API —
       with pre-transfer knowledge so your team owns the system, not just IT. Leadership: Fritz Suarez, Founder.
     </p>
+    <div class="reveal about-brand" style="margin-top:1.75rem;align-items:flex-start">
+      <img src="tophcomm-assets/lssbb-badge.jpg" alt="Six Sigma Global Institute LSSBB Certified — ID 39580107" class="badge-lssbb" width="120" height="120"/>
+      <div>
+        <strong style="display:block;margin-bottom:.35rem">LSSBB Certified</strong>
+        <p style="font-size:.85rem;color:var(--muted);line-height:1.5;max-width:22rem">
+          Six Sigma Global Institute · Lean Six Sigma Black Belt<br/>
+          Credential ID 39580107 · SSGI
+        </p>
+      </div>
+    </div>
   </div>
 </section>
 
@@ -441,6 +483,11 @@ footer li{margin-bottom:.4rem}
     <div>
       <strong style="color:#fff;display:block;margin-bottom:.35rem">Tophcomm Systems</strong>
       FS Softwares · Nationwide PH<br/>NCR · Cebu · Davao
+      <div class="footer-brands">
+        <img src="tophcomm-assets/tophcomm-logo.jpg" alt="Tophcomm Systems" height="40" width="40"/>
+        <img src="tophcomm-assets/fs-softwares-logo.jpg" alt="FS Softwares" height="40" width="40"/>
+        <img src="tophcomm-assets/lssbb-badge.jpg" alt="LSSBB Certified" height="48" width="48" style="background:transparent;padding:0"/>
+      </div>
     </div>
     <div class="cols">
       <div><h5>Product</h5><ul><li><a href="#solutions">Solutions</a></li><li><a href="#pricing">Pricing</a></li><li><a href="#/digicard" data-route="digicard">DigiCard</a></li></ul></div>
@@ -457,6 +504,11 @@ footer li{margin-bottom:.4rem}
 <div class="view" id="view-digicard">
   <div class="wrap" style="padding:5rem 1.5rem 4rem">
     <a class="back-link" href="#/" data-route="home">← Back to Tophcomm</a>
+    <div style="display:flex;align-items:center;gap:12px;margin-bottom:1rem">
+      <img src="tophcomm-assets/tophcomm-logo.jpg" alt="Tophcomm" width="44" height="44" style="object-fit:contain;border-radius:10px;background:#fff;padding:4px"/>
+      <strong>DigiCard</strong>
+      <span class="tag">by Tophcomm Systems</span>
+    </div>
     <div class="digi-hero">
       <div>
         <p class="eyebrow" style="color:var(--orange)">Innovation Lab · Hidden preview</p>
@@ -492,8 +544,8 @@ footer li{margin-bottom:.4rem}
 <div class="view" id="view-client">
   <div class="portal">
     <a class="back-link" href="#/" data-route="home">← Tophcomm</a>
-    <div style="display:flex;align-items:center;justify-content:center;gap:8px;margin-bottom:1.5rem">
-      <svg width="18" height="18" fill="none" stroke="#60a5fa" stroke-width="2" viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+    <div style="display:flex;align-items:center;justify-content:center;gap:10px;margin-bottom:1.5rem">
+      <img src="tophcomm-assets/tophcomm-logo.jpg" alt="Tophcomm" width="32" height="32" style="object-fit:contain;border-radius:8px;background:#fff;padding:3px"/>
       <strong>Client Portal</strong>
     </div>
     <div id="auth-panel">
