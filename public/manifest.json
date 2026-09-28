@@ -1,0 +1,20 @@
+{
+  "name": "Tophcomm Systems",
+  "short_name": "Tophcomm",
+  "description": "Enterprise Software & Systems Integration",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#0d0d0d",
+  "theme_color": "#0d0d0d",
+  "orientation": "portrait-primary",
+  "icons": [
+    {
+      "src": "/favicon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ],
+  "categories": ["business", "technology", "productivity"],
+  "lang": "en"
+}
