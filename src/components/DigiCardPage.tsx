@@ -7,7 +7,7 @@ import * as THREE from 'three';
 import { Link } from 'react-router-dom';
 
 function CardMesh({ hovered }: { hovered: boolean }) {
-  const mesh = useRef<THREE.Mesh>(null);
+  const mesh = useRef<THREE.Group>(null);
   useFrame((_, delta) => {
     if (!mesh.current) return;
     mesh.current.rotation.y += delta * (hovered ? 0.35 : 0.12);

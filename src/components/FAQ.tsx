@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import { DISCOVERY_URL } from '../data/softwareCatalog';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Plus, Minus } from 'lucide-react';
