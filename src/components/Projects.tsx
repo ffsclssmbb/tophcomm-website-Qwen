@@ -2,6 +2,8 @@ import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { ChevronLeft, ChevronRight } from 'lucide-react';
 
+// 📸 Replace these image URLs with your own project images:
+// Place files in public/images/ and use paths like '/images/project-1.jpg'
 const projects = [
   {
     id: 1,
@@ -9,7 +11,8 @@ const projects = [
     tags: '2026 • Tech • Web Platform',
     title: 'Enterprise API Gateway',
     description: 'A unified API management platform connecting 12+ legacy systems with real-time monitoring and automated failover.',
-    image: 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?q=80&w=2070&auto=format&fit=crop',
+    image: '/images/project-1.jpg', // Replace with: '/images/project-1.jpg'
+    fallbackImage: 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?q=80&w=2070&auto=format&fit=crop',
     color: '#f8f9fa',
   },
   {
@@ -18,7 +21,8 @@ const projects = [
     tags: '2025 • Finance • Cloud Migration',
     title: 'Cloud Infrastructure Overhaul',
     description: 'Complete migration from on-premise to multi-cloud architecture with zero downtime and 40% cost reduction.',
-    image: 'https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?q=80&w=2564&auto=format&fit=crop',
+    image: '/images/project-2.jpg', // Replace with: '/images/project-2.jpg'
+    fallbackImage: 'https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?q=80&w=2564&auto=format&fit=crop',
     color: '#f1f5f9',
   },
   {
@@ -27,7 +31,8 @@ const projects = [
     tags: '2025 • Healthcare • Data Platform',
     title: 'Real-Time Analytics Dashboard',
     description: 'HIPAA-compliant data pipeline processing millions of events daily for actionable business intelligence.',
-    image: 'https://images.unsplash.com/photo-1498050108023-c5249f4df085?q=80&w=2072&auto=format&fit=crop',
+    image: '/images/project-3.jpg', // Replace with: '/images/project-3.jpg'
+    fallbackImage: 'https://images.unsplash.com/photo-1498050108023-c5249f4df085?q=80&w=2072&auto=format&fit=crop',
     color: '#f4f4f5',
   },
 ];
@@ -142,6 +147,10 @@ export default function Projects() {
                           src={project.image}
                           alt={project.title}
                           className="w-full h-full object-cover"
+                          onError={(e) => {
+                            const target = e.target as HTMLImageElement;
+                            target.src = project.fallbackImage;
+                          }}
                         />
                         {/* Glassmorphism shapes */}
                         <div className="absolute top-8 left-8 w-20 h-20 rounded-lg backdrop-blur-sm bg-white/90 mix-blend-overlay" />

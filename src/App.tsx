@@ -3,26 +3,24 @@ import Lenis from 'lenis';
 import Navbar from './components/Navbar';
 import Services from './components/Services';
 import Projects from './components/Projects';
+import Innovation from './components/Innovation';
 import About from './components/About';
 import Team from './components/Team';
 import FAQ from './components/FAQ';
 import Pricing from './components/Pricing';
+import Contact from './components/Contact';
 import Footer from './components/Footer';
 
 // Lazy load Hero (contains Three.js/R3F - heavy)
 const Hero = lazy(() => import('./components/Hero'));
 
 function App() {
-  const [lenis, setLenis] = useState<Lenis | null>(null);
-
   useEffect(() => {
     const lenisInstance = new Lenis({
       lerp: 0.1,
       duration: 1.5,
       smoothWheel: true,
     });
-
-    setLenis(lenisInstance);
 
     function raf(time: number) {
       lenisInstance.raf(time);
@@ -58,10 +56,12 @@ function App() {
         </Suspense>
         <Services />
         <Projects />
+        <Innovation />
         <About />
         <Team />
         <FAQ />
         <Pricing />
+        <Contact />
       </main>
       <Footer />
     </div>

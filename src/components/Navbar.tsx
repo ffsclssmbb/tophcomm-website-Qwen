@@ -5,10 +5,12 @@ import { Menu, X } from 'lucide-react';
 const navLinks = [
   { label: 'Services', href: '#services' },
   { label: 'Projects', href: '#projects' },
+  { label: 'Innovation', href: '#innovation' },
   { label: 'About', href: '#about' },
   { label: 'Team', href: '#team' },
   { label: 'FAQ', href: '#faq' },
   { label: 'Pricing', href: '#pricing' },
+  { label: 'Contact', href: '#contact' },
 ];
 
 export default function Navbar() {
@@ -29,9 +31,11 @@ export default function Navbar() {
     <>
       <nav className="fixed top-0 left-0 right-0 z-50 mix-blend-difference">
         <div className="max-w-[1400px] mx-auto px-6 md:px-12 py-6 flex items-center justify-between">
-          {/* Logo */}
+          {/* Logo — Replace the SVG with your logo:
+              <img src="/images/tophcomm-logo.png" alt="Tophcomm Systems" className="h-10 w-auto" />
+          */}
           <a href="#" className="flex items-center gap-3 text-white">
-            <svg width="32" height="32" viewBox="0 0 32 32" fill="none">
+            <svg width="32" height="32" viewBox="0 0 32 32" fill="none" aria-hidden="true">
               <path d="M16 2L4 8v16l12 6 12-6V8L16 2z" stroke="currentColor" strokeWidth="2" />
               <path d="M16 8l-6 3v6l6 3 6-3v-6l-6-3z" fill="currentColor" />
             </svg>

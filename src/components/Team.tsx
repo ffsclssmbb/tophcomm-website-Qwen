@@ -1,20 +1,25 @@
 import { motion } from 'framer-motion';
 
+// 📸 Replace these image URLs with your own team photos:
+// Place files in public/images/ and use paths like '/images/team-alex.jpg'
 const team = [
   {
     name: 'Alex Morgan',
     role: 'Chief Technology Officer',
-    image: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=1000&auto=format&fit=crop',
+    image: '/images/team-alex.jpg', // Replace with your photo
+    fallbackImage: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=1000&auto=format&fit=crop',
   },
   {
     name: 'Sarah Chen',
     role: 'Lead Systems Architect',
-    image: 'https://images.unsplash.com/photo-1494790108377-be9c29b29330?q=80&w=1000&auto=format&fit=crop',
+    image: '/images/team-sarah.jpg', // Replace with your photo
+    fallbackImage: 'https://images.unsplash.com/photo-1494790108377-be9c29b29330?q=80&w=1000&auto=format&fit=crop',
   },
   {
     name: 'Marcus Johnson',
     role: 'Cloud Infrastructure Lead',
-    image: 'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?q=80&w=1000&auto=format&fit=crop',
+    image: '/images/team-marcus.jpg', // Replace with your photo
+    fallbackImage: 'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?q=80&w=1000&auto=format&fit=crop',
   },
 ];
 
@@ -53,6 +58,9 @@ export default function Team() {
                   src={member.image}
                   alt={member.name}
                   className="w-full h-full object-cover grayscale-hover"
+                  onError={(e) => {
+                    (e.target as HTMLImageElement).src = member.fallbackImage;
+                  }}
                 />
               </div>
               {/* Overlay */}
