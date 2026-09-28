@@ -5,6 +5,10 @@
 [build.environment]
   NODE_VERSION = "20"
 
+[dev]
+  framework = "vite"
+  targetPort = 3000
+
 # Redirect all routes to index.html for SPA
 [[redirects]]
   from = "/*"
