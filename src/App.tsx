@@ -6,6 +6,8 @@ import Projects from './components/Projects';
 import Integration from './components/Integration';
 import Innovation from './components/Innovation';
 import About from './components/About';
+import Process from './components/Process';
+import Industries from './components/Industries';
 import Team from './components/Team';
 import FAQ from './components/FAQ';
 import Pricing from './components/Pricing';
@@ -60,6 +62,8 @@ function App() {
         <Integration />
         <Innovation />
         <About />
+        <Process />
+        <Industries />
         <Team />
         <FAQ />
         <Pricing />
