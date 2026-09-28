@@ -45,6 +45,8 @@ button,input,textarea,select{font-family:inherit}
 .menu-btn span{width:16px;height:2px;background:#fff;transition:.25s}
 .mobile-menu{display:none;position:fixed;inset:0;z-index:99;background:rgba(0,0,0,.96);backdrop-filter:blur(24px);flex-direction:column;align-items:center;justify-content:center;gap:1.1rem}
 .mobile-menu.open{display:flex}
+.mobile-menu[hidden]{display:none !important}
+.mobile-menu.open:not([hidden]){display:flex}
 .mobile-menu a{font-size:1.4rem;font-weight:500}
 
 .view{display:none;min-height:100vh}
@@ -199,13 +201,65 @@ footer li{margin-bottom:.4rem}
 .footer-brands img{height:40px;width:auto;object-fit:contain;border-radius:6px;background:rgba(255,255,255,.06);padding:4px}
 .division .brand-row{display:flex;align-items:center;gap:1rem;margin-bottom:1rem}
 
+
+/* ===== Accessibility (WCAG 2.2 oriented) ===== */
+:focus{outline:none}
+:focus-visible{
+  outline:3px solid #93c5fd;
+  outline-offset:3px;
+}
+a:focus-visible,button:focus-visible,input:focus-visible,textarea:focus-visible,select:focus-visible,.nav-pill:focus-visible,.btn:focus-visible,.faq-q:focus-visible,.tabs button:focus-visible,.menu-btn:focus-visible{
+  outline:3px solid #93c5fd;
+  outline-offset:3px;
+}
+.skip-link{
+  position:absolute;left:12px;top:12px;z-index:10000;
+  background:#fff;color:#000;padding:10px 16px;border-radius:8px;
+  font-weight:600;font-size:14px;transform:translateY(-120%);
+  transition:transform .2s;
+}
+.skip-link:focus,.skip-link:focus-visible{transform:translateY(0);outline:3px solid #2563eb;outline-offset:2px}
+.sr-only{
+  position:absolute;width:1px;height:1px;padding:0;margin:-1px;
+  overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0;
+}
+/* Improve muted text contrast toward ~4.5:1 on black */
+:root{--muted:#b3b3b3}
+.card p,.step p,.hub-card span,.price-card .sub,.bundle .meta,.portal .sub{color:var(--muted)}
+/* Ensure interactive targets >= 44px where practical */
+.nav-pill{min-height:40px}
+.menu-btn{min-width:44px;min-height:44px}
+.faq-q{min-height:48px}
+.tabs button{min-height:44px}
+/* Reduced motion */
+@media (prefers-reduced-motion: reduce){
+  html{scroll-behavior:auto}
+  *,*::before,*::after{
+    animation-duration:.01ms !important;
+    animation-iteration-count:1 !important;
+    transition-duration:.01ms !important;
+  }
+  .reveal{opacity:1;transform:none}
+  .card-3d{animation:none}
+  #particles{display:none}
+}
+/* High contrast preference */
+@media (prefers-contrast: more){
+  .card,.nav-pill,.price-card,.bundle,.hub-card,.faq-item{border-color:rgba(255,255,255,.45)}
+  .btn-solid{border:2px solid #fff}
+  .btn-ghost{border:2px solid #ccc}
+}
+/* Form error association */
+.field [aria-invalid="true"]{border-color:#f87171}
+.alert-err[role="alert"]{display:block}
+
 </style>
 </head>
 <body>
 <div class="grain" aria-hidden="true"></div>
-<div class="toast" id="toast"></div>
+<div class="toast" id="toast" role="status" aria-live="polite" aria-atomic="true"></div>
 
-<nav class="nav" id="nav">
+<nav class="nav" id="nav" role="navigation" aria-label="Primary">
   <div class="nav-inner">
     <a href="#/" class="logo" data-route="home">
       <img src="tophcomm-assets/tophcomm-logo.jpg" alt="Tophcomm Systems" class="logo-img" width="36" height="36"/>
@@ -222,10 +276,10 @@ footer li{margin-bottom:.4rem}
       <a class="nav-pill client" href="#/client" data-route="client">Client</a>
       <a class="btn btn-solid" href="#contact">Start for Free</a>
     </div>
-    <button class="menu-btn" id="menuBtn" aria-label="Menu"><span></span><span></span><span></span></button>
+    <button type="button" class="menu-btn" id="menuBtn" aria-label="Open menu" aria-expanded="false" aria-controls="mobileMenu"><span aria-hidden="true"></span><span aria-hidden="true"></span><span aria-hidden="true"></span></button>
   </div>
 </nav>
-<div class="mobile-menu" id="mobileMenu">
+<div class="mobile-menu" id="mobileMenu" role="dialog" aria-modal="true" aria-label="Mobile navigation" hidden>
   <a href="#services" data-close>Services</a>
   <a href="#solutions" data-close>Products</a>
   <a href="#process" data-close>Process</a>
@@ -237,9 +291,9 @@ footer li{margin-bottom:.4rem}
 </div>
 
 <!-- HOME -->
-<div class="view active" id="view-home">
-<header class="hero">
-  <canvas id="particles"></canvas>
+<div class="view active" id="view-home" role="main" aria-label="Home">
+<header class="hero" id="main-content">
+  <canvas id="particles" aria-hidden="true" role="presentation"></canvas>
   <div class="hero-grad"></div>
   <div class="hero-content">
     <div class="badge">
@@ -263,7 +317,7 @@ footer li{margin-bottom:.4rem}
   </div>
 </header>
 
-<section id="services">
+<section id="services" aria-label="Services">
   <div class="wrap">
     <p class="eyebrow reveal">What We Do</p>
     <h2 class="reveal" style="margin-bottom:2.25rem">Core capabilities</h2>
@@ -282,7 +336,7 @@ footer li{margin-bottom:.4rem}
   </div>
 </section>
 
-<section id="solutions">
+<section id="solutions" aria-label="Products and solutions">
   <div class="wrap">
     <p class="eyebrow reveal">FS Softwares</p>
     <h2 class="reveal" style="margin-bottom:2rem">20+ solutions · 6 categories</h2>
@@ -319,7 +373,7 @@ footer li{margin-bottom:.4rem}
   </div>
 </section>
 
-<section id="process">
+<section id="process" aria-label="Implementation process">
   <div class="wrap">
     <p class="eyebrow reveal">How We Work</p>
     <h2 class="reveal" style="margin-bottom:.5rem">Sales to go-live</h2>
@@ -342,7 +396,7 @@ footer li{margin-bottom:.4rem}
   </div>
 </section>
 
-<section id="industries">
+<section id="industries" aria-label="Industries">
   <div class="wrap">
     <p class="eyebrow reveal">Industries</p>
     <h2 class="reveal" style="margin-bottom:2rem">12 verticals nationwide</h2>
@@ -359,7 +413,7 @@ footer li{margin-bottom:.4rem}
   </div>
 </section>
 
-<section id="hubs">
+<section id="hubs" aria-label="Regional hubs">
   <div class="wrap">
     <p class="eyebrow reveal">Nationwide</p>
     <h2 class="reveal" style="margin-bottom:2rem">Three strategic hubs</h2>
@@ -371,7 +425,7 @@ footer li{margin-bottom:.4rem}
   </div>
 </section>
 
-<section id="pricing">
+<section id="pricing" aria-label="Pricing">
   <div class="wrap">
     <p class="eyebrow reveal">Pricing</p>
     <h2 class="reveal" style="margin-bottom:.5rem">Transparent PHP pricing</h2>
@@ -410,23 +464,23 @@ footer li{margin-bottom:.4rem}
   </div>
 </section>
 
-<section id="faq">
+<section id="faq" aria-labelledby="faq-heading">
   <div class="wrap" style="max-width:900px">
     <p class="eyebrow reveal">FAQ</p>
-    <h2 class="reveal" style="margin-bottom:2rem">Frequently asked questions</h2>
+    <h2 class="reveal" id="faq-heading" style="margin-bottom:2rem">Frequently asked questions</h2>
     <div class="reveal">
-      <div class="faq-item"><button type="button" class="faq-q">How long does implementation take?<span>+</span></button><div class="faq-a">Typical Starter deployments go live in 4–8 weeks. Growth and multi-branch projects run 8–16 weeks depending on data migration and integrations. Enterprise timelines are scoped in the proposal.</div></div>
-      <div class="faq-item"><button type="button" class="faq-q">Do you support multi-branch operations?<span>+</span></button><div class="faq-a">Yes. Our systems are designed for Philippine multi-branch reality — NCR, Visayas, and Mindanao hubs with shared inventory, consolidated reporting, and role-based access per location.</div></div>
-      <div class="faq-item"><button type="button" class="faq-q">What cloud platforms do you use?<span>+</span></button><div class="faq-a">AWS, Azure, and Google Cloud Platform. We also support hybrid and multi-cloud architectures and help you choose the right mix for cost and compliance.</div></div>
-      <div class="faq-item"><button type="button" class="faq-q">How do you handle security and compliance?<span>+</span></button><div class="faq-a">Security is built into every layer. We follow SOC 2, GDPR, and HIPAA frameworks as needed — encryption at rest and in transit, RBAC, and audit logging.</div></div>
-      <div class="faq-item"><button type="button" class="faq-q">What does managed support include?<span>+</span></button><div class="faq-a">24/7 monitoring, incident response with defined SLAs (as fast as 15 minutes for critical issues), proactive maintenance, performance optimization, and quarterly business reviews.</div></div>
-      <div class="faq-item"><button type="button" class="faq-q">What is DigiCard?<span>+</span></button><div class="faq-a">DigiCard is our digital identity card platform (preview). NFC and QR sharing, live analytics, full branding, and team provisioning. Access the hidden preview from Innovation or via #/digicard.</div></div>
-      <div class="faq-item"><button type="button" class="faq-q">How do I access the Client Portal?<span>+</span></button><div class="faq-a">Open Client in the nav or go to #/client. Registration requires an allowed email domain and a one-time OTP. Sessions last 24 hours.</div></div>
+      <div class="faq-item"><button type="button" class="faq-q" aria-expanded="false">How long does implementation take?<span aria-hidden="true">+</span></button><div class="faq-a">Typical Starter deployments go live in 4–8 weeks. Growth and multi-branch projects run 8–16 weeks depending on data migration and integrations. Enterprise timelines are scoped in the proposal.</div></div>
+      <div class="faq-item"><button type="button" class="faq-q" aria-expanded="false">Do you support multi-branch operations?<span aria-hidden="true">+</span></button><div class="faq-a">Yes. Our systems are designed for Philippine multi-branch reality — NCR, Visayas, and Mindanao hubs with shared inventory, consolidated reporting, and role-based access per location.</div></div>
+      <div class="faq-item"><button type="button" class="faq-q" aria-expanded="false">What cloud platforms do you use?<span aria-hidden="true">+</span></button><div class="faq-a">AWS, Azure, and Google Cloud Platform. We also support hybrid and multi-cloud architectures and help you choose the right mix for cost and compliance.</div></div>
+      <div class="faq-item"><button type="button" class="faq-q" aria-expanded="false">How do you handle security and compliance?<span aria-hidden="true">+</span></button><div class="faq-a">Security is built into every layer. We follow SOC 2, GDPR, and HIPAA frameworks as needed — encryption at rest and in transit, RBAC, and audit logging.</div></div>
+      <div class="faq-item"><button type="button" class="faq-q" aria-expanded="false">What does managed support include?<span aria-hidden="true">+</span></button><div class="faq-a">24/7 monitoring, incident response with defined SLAs (as fast as 15 minutes for critical issues), proactive maintenance, performance optimization, and quarterly business reviews.</div></div>
+      <div class="faq-item"><button type="button" class="faq-q" aria-expanded="false">What is DigiCard?<span aria-hidden="true">+</span></button><div class="faq-a">DigiCard is our digital identity card platform (preview). NFC and QR sharing, live analytics, full branding, and team provisioning. Access the hidden preview from Innovation or via #/digicard.</div></div>
+      <div class="faq-item"><button type="button" class="faq-q" aria-expanded="false">How do I access the Client Portal?<span aria-hidden="true">+</span></button><div class="faq-a">Open Client in the nav or go to #/client. Registration requires an allowed email domain and a one-time OTP. Sessions last 24 hours.</div></div>
     </div>
   </div>
 </section>
 
-<section id="about">
+<section id="about" aria-label="About Tophcomm Systems">
   <div class="wrap" style="max-width:720px">
     <p class="eyebrow reveal">About</p>
     <div class="reveal about-brand" style="margin-bottom:1rem">
@@ -454,21 +508,21 @@ footer li{margin-bottom:.4rem}
   </div>
 </section>
 
-<section id="contact">
+<section id="contact" aria-label="Contact">
   <div class="wrap">
     <p class="eyebrow reveal" style="text-align:center">Contact</p>
     <h2 class="reveal" style="text-align:center;margin-bottom:.75rem">Ready to upgrade your systems?</h2>
     <p class="reveal" style="text-align:center;color:var(--muted);margin-bottom:2rem;font-size:.95rem">Free 30-minute consultation. Nationwide support from 3 hubs.</p>
-    <form class="contact-form reveal" id="contact-form">
+    <form class="contact-form reveal" id="contact-form" novalidate aria-label="Contact inquiry">
       <div class="grid-2">
-        <div class="field"><label>Full name</label><input type="text" name="name" required placeholder="Your name"/></div>
-        <div class="field"><label>Work email</label><input type="email" name="email" required placeholder="you@company.com"/></div>
+        <div class="field"><label for="cf-name">Full name</label><input type="text" id="cf-name" name="name" required placeholder="Your name" autocomplete="name"/></div>
+        <div class="field"><label for="cf-email">Work email</label><input type="email" id="cf-email" name="email" required placeholder="you@company.com" autocomplete="email"/></div>
       </div>
-      <div class="field"><label>Company</label><input type="text" name="company" placeholder="Company name"/></div>
-      <div class="field"><label>Hub preference</label>
-        <select name="hub"><option value="">Any / nationwide</option><option>NCR</option><option>Cebu</option><option>Davao</option></select>
+      <div class="field"><label for="cf-company">Company</label><input type="text" id="cf-company" name="company" placeholder="Company name" autocomplete="organization"/></div>
+      <div class="field"><label for="cf-hub">Hub preference</label>
+        <select id="cf-hub" name="hub"><option value="">Any / nationwide</option><option>NCR</option><option>Cebu</option><option>Davao</option></select>
       </div>
-      <div class="field"><label>Message</label><textarea name="message" placeholder="What systems are you looking to improve?"></textarea></div>
+      <div class="field"><label for="cf-message">Message</label><textarea id="cf-message" name="message" placeholder="What systems are you looking to improve?"></textarea></div>
       <button type="submit" class="btn btn-solid" style="width:100%">Send inquiry</button>
       <p style="text-align:center;margin-top:1rem;font-size:.8rem;color:var(--muted)">
         Or email <a href="mailto:hello@tophcomm.systems" style="color:var(--blue)">hello@tophcomm.systems</a>
@@ -478,7 +532,7 @@ footer li{margin-bottom:.4rem}
   </div>
 </section>
 
-<footer>
+<footer role="contentinfo">
   <div class="wrap">
     <div>
       <strong style="color:#fff;display:block;margin-bottom:.35rem">Tophcomm Systems</strong>
@@ -501,7 +555,7 @@ footer li{margin-bottom:.4rem}
 </div>
 
 <!-- DIGICARD -->
-<div class="view" id="view-digicard">
+<div class="view" id="view-digicard" role="main" aria-label="DigiCard">
   <div class="wrap" style="padding:5rem 1.5rem 4rem">
     <a class="back-link" href="#/" data-route="home">← Back to Tophcomm</a>
     <div style="display:flex;align-items:center;gap:12px;margin-bottom:1rem">
@@ -541,7 +595,7 @@ footer li{margin-bottom:.4rem}
 </div>
 
 <!-- CLIENT -->
-<div class="view" id="view-client">
+<div class="view" id="view-client" role="main" aria-label="Client Portal">
   <div class="portal">
     <a class="back-link" href="#/" data-route="home">← Tophcomm</a>
     <div style="display:flex;align-items:center;justify-content:center;gap:10px;margin-bottom:1.5rem">
@@ -551,15 +605,15 @@ footer li{margin-bottom:.4rem}
     <div id="auth-panel">
       <h1 id="auth-title">Welcome back</h1>
       <p class="sub">Email-domain validation + OTP clearance</p>
-      <div class="tabs">
-        <button type="button" class="active" data-mode="login">Sign in</button>
-        <button type="button" data-mode="register">Register</button>
+      <div class="tabs" role="tablist" aria-label="Authentication mode">
+        <button type="button" role="tab" class="active" data-mode="login" aria-selected="true" id="tab-login">Sign in</button>
+        <button type="button" role="tab" data-mode="register" aria-selected="false" id="tab-register">Register</button>
       </div>
-      <form id="auth-form">
-        <div class="field" id="name-field" style="display:none"><label>Full name</label><input type="text" id="name" placeholder="Juan Dela Cruz" autocomplete="name"/></div>
-        <div class="field" id="company-field" style="display:none"><label>Company (optional)</label><input type="text" id="company" placeholder="Your company" autocomplete="organization"/></div>
-        <div class="field"><label>Work email</label><input type="email" id="email" required placeholder="you@company.com" autocomplete="email"/></div>
-        <div id="auth-error" class="alert alert-err" style="display:none"></div>
+      <form id="auth-form" novalidate aria-label="Client authentication">
+        <div class="field" id="name-field" style="display:none"><label for="name">Full name</label><input type="text" id="name" placeholder="Juan Dela Cruz" autocomplete="name"/></div>
+        <div class="field" id="company-field" style="display:none"><label for="company">Company (optional)</label><input type="text" id="company" placeholder="Your company" autocomplete="organization"/></div>
+        <div class="field"><label for="email">Work email</label><input type="email" id="email" required placeholder="you@company.com" autocomplete="email"/></div>
+        <div id="auth-error" class="alert alert-err" style="display:none" role="alert" aria-live="assertive"></div>
         <button type="submit" class="btn btn-solid" style="width:100%" id="auth-submit">Send verification code</button>
       </form>
       <p style="font-size:11px;color:var(--muted);text-align:center;margin-top:1.25rem;line-height:1.5">Allowed: tophcomm.systems, fssoftwares.com, gmail.com, outlook.com, company.ph…</p>
@@ -568,9 +622,9 @@ footer li{margin-bottom:.4rem}
       <h1>Enter verification code</h1>
       <p class="sub">6-digit code for <span id="otp-email"></span></p>
       <div id="demo-code" class="alert-demo" style="display:none">Demo mode — use this code<code id="demo-code-val"></code></div>
-      <form id="otp-form">
-        <div class="field"><label>OTP</label><input class="otp-input" type="text" id="otp" inputmode="numeric" maxlength="6" pattern="[0-9]*" placeholder="······" required/></div>
-        <div id="otp-error" class="alert alert-err" style="display:none"></div>
+      <form id="otp-form" novalidate aria-label="One-time password verification">
+        <div class="field"><label for="otp">One-time password</label><input class="otp-input" type="text" id="otp" aria-describedby="demo-code" inputmode="numeric" maxlength="6" pattern="[0-9]*" placeholder="······" required/></div>
+        <div id="otp-error" class="alert alert-err" style="display:none" role="alert" aria-live="assertive"></div>
         <button type="submit" class="btn btn-solid" style="width:100%">Verify & continue</button>
         <button type="button" class="btn btn-ghost" style="width:100%;margin-top:.5rem" id="otp-back">Back</button>
       </form>
@@ -616,10 +670,7 @@ footer li{margin-bottom:.4rem}
     });
   });
 
-  const menuBtn=document.getElementById('menuBtn');
-  const mobileMenu=document.getElementById('mobileMenu');
-  menuBtn.addEventListener('click',()=>mobileMenu.classList.toggle('open'));
-  mobileMenu.querySelectorAll('[data-close]').forEach(a=>a.addEventListener('click',()=>mobileMenu.classList.remove('open')));
+  /* menu handled in a11y block */
 
   window.addEventListener('scroll',()=>{
     document.getElementById('nav').classList.toggle('scrolled',window.scrollY>24);
@@ -630,14 +681,7 @@ footer li{margin-bottom:.4rem}
   },{threshold:0.1});
   document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
 
-  document.querySelectorAll('.faq-q').forEach(btn=>{
-    btn.addEventListener('click',()=>{
-      const item=btn.parentElement;
-      const open=item.classList.contains('open');
-      document.querySelectorAll('.faq-item').forEach(i=>i.classList.remove('open'));
-      if(!open)item.classList.add('open');
-    });
-  });
+  /* FAQ handled in a11y block */
 
   function toast(msg){
     const t=document.getElementById('toast');
@@ -725,6 +769,65 @@ footer li{margin-bottom:.4rem}
   });
   document.getElementById('otp-back').addEventListener('click',()=>show('auth-panel'));
   document.getElementById('logout').addEventListener('click',()=>{localStorage.removeItem(SK);localStorage.removeItem(OK);show('auth-panel')});
+
+
+  /* Accessibility behaviors */
+  const mobileMenu = document.getElementById('mobileMenu');
+  function setMenuOpen(open){
+    const btn = document.getElementById('menuBtn');
+    mobileMenu.classList.toggle('open', open);
+    if(open){ mobileMenu.removeAttribute('hidden'); }
+    else { mobileMenu.setAttribute('hidden',''); }
+    if(btn){
+      btn.setAttribute('aria-expanded', open ? 'true' : 'false');
+      btn.setAttribute('aria-label', open ? 'Close menu' : 'Open menu');
+    }
+    document.body.style.overflow = open ? 'hidden' : '';
+    if(open){
+      const first = mobileMenu.querySelector('a');
+      if(first) first.focus();
+    } else if(btn) {
+      btn.focus();
+    }
+  }
+  document.getElementById('menuBtn').addEventListener('click', () => {
+    setMenuOpen(!mobileMenu.classList.contains('open'));
+  });
+  mobileMenu.querySelectorAll('[data-close]').forEach(a => {
+    a.addEventListener('click', () => setMenuOpen(false));
+  });
+  document.addEventListener('keydown', (e) => {
+    if(e.key === 'Escape' && mobileMenu.classList.contains('open')){
+      setMenuOpen(false);
+    }
+  });
+
+  // FAQ aria-expanded
+  document.querySelectorAll('.faq-q').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const item = btn.parentElement;
+      const willOpen = !item.classList.contains('open');
+      document.querySelectorAll('.faq-item').forEach(i => {
+        i.classList.remove('open');
+        const b = i.querySelector('.faq-q');
+        if(b) b.setAttribute('aria-expanded', 'false');
+      });
+      if(willOpen){
+        item.classList.add('open');
+        btn.setAttribute('aria-expanded', 'true');
+      }
+    });
+  });
+
+  // Auth tabs aria-selected
+  document.querySelectorAll('.tabs [role="tab"]').forEach(btn => {
+    btn.addEventListener('click', () => {
+      document.querySelectorAll('.tabs [role="tab"]').forEach(b => {
+        b.classList.toggle('active', b === btn);
+        b.setAttribute('aria-selected', b === btn ? 'true' : 'false');
+      });
+    });
+  });
 
   route();
 })();
