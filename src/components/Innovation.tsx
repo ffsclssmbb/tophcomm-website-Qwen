@@ -75,19 +75,19 @@ export default function Innovation() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.8, delay: 0.4 }}
-            className="group relative overflow-hidden rounded-3xl bg-gradient-to-br from-orange-50 to-white p-10 md:p-12 text-black border border-orange-100"
+            className="group relative overflow-hidden rounded-3xl bg-gradient-to-br from-zinc-900 to-black p-10 md:p-12 text-white border border-orange-500/20"
           >
             <div className="flex items-center justify-between mb-8">
               <CreditCard className="w-12 h-12 text-orange-500" strokeWidth={1.5} />
-              <span className="px-3 py-1 rounded-full bg-orange-100 text-orange-600 text-xs font-semibold uppercase tracking-wider">
+              <span className="px-3 py-1 rounded-full bg-orange-500/15 text-orange-400 border border-orange-500/25 text-xs font-semibold uppercase tracking-wider">
                 Coming Soon
               </span>
             </div>
             <h3 className="font-display text-3xl md:text-4xl font-bold mb-4">
               DigiCard
             </h3>
-            <p className="text-sm text-gray-500 mb-6">Innovation</p>
-            <p className="text-gray-700 leading-relaxed mb-8">
+            <p className="text-sm text-orange-400/80 mb-6">Innovation</p>
+            <p className="text-gray-300 leading-relaxed mb-8">
               A next-generation digital business card platform. Replace paper cards with dynamic, interactive digital identities that update in real-time. NFC-enabled, analytics-powered, and fully branded.
             </p>
             <div className="grid grid-cols-2 gap-3 mb-8">
@@ -98,8 +98,8 @@ export default function Innovation() {
                 </div>
               ))}
             </div>
-            <a href="#contact" className="inline-flex items-center gap-2 text-orange-600 hover:text-orange-700 transition-colors text-sm font-medium">
-              Join the Waitlist
+            <a href="/digicard" className="inline-flex items-center gap-2 text-orange-400 hover:text-orange-300 transition-colors text-sm font-medium">
+              Open DigiCard preview
               <ArrowUpRight size={16} />
             </a>
             {/* Decorative glow */}
@@ -113,11 +113,11 @@ export default function Innovation() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.8, delay: 0.6 }}
-          className="bg-gray-50 rounded-3xl p-8 md:p-12"
+          className="rounded-3xl p-8 md:p-12 border border-white/10 bg-white/[0.03]"
         >
           <div className="flex flex-col md:flex-row md:items-center md:justify-between mb-8">
             <div>
-              <h3 className="font-display text-2xl md:text-3xl font-bold text-black mb-2">
+              <h3 className="font-display text-2xl md:text-3xl font-bold text-white mb-2">
                 Complete Product Catalog
               </h3>
               <p className="text-sm text-gray-600">
@@ -128,7 +128,7 @@ export default function Innovation() {
               href="https://member-tophcomm-fssoftwares.netlify.app/#/intake"
               target="_blank"
               rel="noopener noreferrer"
-              className="mt-4 md:mt-0 inline-flex items-center gap-2 px-6 py-3 bg-black text-white rounded-full font-semibold hover:bg-accent transition-colors"
+              className="mt-4 md:mt-0 inline-flex items-center gap-2 px-6 py-3 bg-white text-black rounded-full font-semibold hover:bg-accent transition-colors"
             >
               Discovery Portal
               <ArrowUpRight size={18} />
@@ -139,8 +139,8 @@ export default function Innovation() {
             {softwareCategories.map((category) => {
               const categoryProducts = softwareProducts.filter(p => p.category === category.id);
               return (
-                <div key={category.id} className="bg-white rounded-xl p-4">
-                  <h4 className="font-display text-sm font-semibold text-black mb-2">
+                <div key={category.id} className="bg-white/5 rounded-xl p-4 border border-white/8">
+                  <h4 className="font-display text-sm font-semibold text-white mb-2">
                     {category.name}
                   </h4>
                   <div className="text-2xl font-bold text-accent mb-1">
