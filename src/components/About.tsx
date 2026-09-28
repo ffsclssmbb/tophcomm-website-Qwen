@@ -1,6 +1,7 @@
 import { useRef } from 'react';
 import { motion, useScroll, useTransform } from 'framer-motion';
-import { MapPin, Phone, Mail } from 'lucide-react';
+import { MapPin, Phone, Mail, ArrowUpRight } from 'lucide-react';
+import { DISCOVERY_URL } from '../data/softwareCatalog';
 
 // 📸 Replace these image URLs with your own:
 // Place files in public/images/ and use paths like '/images/about-1.jpg'
@@ -15,25 +16,25 @@ const images = {
 
 const hubs = [
   {
-    name: 'NCR Hub',
+    name: 'Davao — Headquarters',
+    region: 'Mindanao',
+    location: 'Davao City',
+    coverage: 'Primary HQ · Mindanao, Southern Philippines, Davao, GenSan, Zamboanga',
+    icon: '🌴',
+  },
+  {
+    name: 'Manila — For Opening',
     region: 'Luzon',
-    location: 'Metro Manila / Quezon City',
-    coverage: 'Luzon, Northern Philippines, Metro Manila, Cavite, Laguna',
+    location: 'Quezon City (QC)',
+    coverage: 'Opening soon · Luzon, Metro Manila, Cavite, Laguna',
     icon: '🏢',
   },
   {
-    name: 'Cebu Hub',
+    name: 'Cebu — For Opening',
     region: 'Visayas',
-    location: 'Cebu City',
-    coverage: 'Visayas, Central Philippines, Cebu, Bohol, Negros',
+    location: 'Mabolo, Cebu City',
+    coverage: 'Opening soon · Visayas, Central Philippines, Cebu, Bohol, Negros',
     icon: '🏝️',
-  },
-  {
-    name: 'Davao Headquarters',
-    region: 'Mindanao',
-    location: 'Davao City',
-    coverage: 'Mindanao, Southern Philippines, Davao, GenSan, Zamboanga',
-    icon: '🌴',
   },
 ];
 
@@ -252,6 +253,18 @@ export default function About() {
             ))}
           </div>
         </motion.div>
+
+        <div className="mt-16 text-center">
+          <a
+            href={DISCOVERY_URL}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center gap-2 px-8 py-4 bg-black text-white rounded-full font-semibold hover:bg-accent transition-colors"
+          >
+            Explore FS Softwares
+            <ArrowUpRight size={18} />
+          </a>
+        </div>
       </div>
     </section>
   );

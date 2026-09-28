@@ -1,6 +1,7 @@
 import { motion } from 'framer-motion';
 import { ArrowUpRight, GitBranch, Database, Cloud, Shield, Network, FileText } from 'lucide-react';
-import { softwareCategories, softwareProducts } from '../data/softwareCatalog';
+import { softwareCategories, softwareProducts, DISCOVERY_URL } from '../data/softwareCatalog';
+import SolutionExplorer from './SolutionExplorer';
 
 const integrationFlow = [
   { icon: FileText, label: 'Financial', color: 'bg-blue-500', products: 1 },
@@ -31,7 +32,6 @@ export default function Integration() {
           </p>
         </motion.div>
 
-        {/* Integration Flow Diagram */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -56,7 +56,6 @@ export default function Integration() {
                   <h4 className="font-display text-lg font-semibold text-black mb-1">{item.label}</h4>
                   <p className="text-xs text-gray-500">{item.products} products</p>
                 </div>
-                {/* Connector arrow */}
                 {i < integrationFlow.length - 1 && (
                   <div className="hidden lg:block absolute top-1/2 -right-2 w-4 h-0.5 bg-gray-300" />
                 )}
@@ -65,7 +64,16 @@ export default function Integration() {
           </div>
         </motion.div>
 
-        {/* Software Catalog Grid */}
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.8, delay: 0.3 }}
+          className="mb-20"
+        >
+          <SolutionExplorer />
+        </motion.div>
+
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -83,7 +91,7 @@ export default function Integration() {
 
           <div className="space-y-8">
             {softwareCategories.map((category, catIndex) => {
-              const categoryProducts = softwareProducts.filter(p => p.category === category.id);
+              const categoryProducts = softwareProducts.filter((p) => p.category === category.id);
               return (
                 <motion.div
                   key={category.id}
@@ -108,15 +116,11 @@ export default function Integration() {
                           <h5 className="font-display text-lg font-semibold text-black">
                             {product.name}
                           </h5>
-                          {product.status === 'beta' && (
-                            <span className="px-2 py-0.5 bg-yellow-100 text-yellow-700 text-xs font-medium rounded-full">
-                              Beta
-                            </span>
-                          )}
+                          <span className="text-[11px] text-gray-400 ml-3 shrink-0">FS / {product.number}</span>
                         </div>
                         <p className="text-sm text-gray-600 mb-3 line-clamp-2">{product.description}</p>
                         <div className="flex flex-wrap gap-1.5">
-                          {product.modules.map((mod) => (
+                          {product.modules.slice(0, 4).map((mod) => (
                             <span
                               key={mod}
                               className="px-2 py-0.5 bg-white text-xs text-gray-600 rounded-full"
@@ -133,17 +137,17 @@ export default function Integration() {
             })}
           </div>
 
-          {/* Discovery Link */}
           <div className="mt-12 text-center">
             <a
-              href="https://fs-softwares-library.sassy-goat-1694.chatgpt.site"
+              href={DISCOVERY_URL}
               target="_blank"
               rel="noopener noreferrer"
               className="inline-flex items-center gap-2 px-8 py-4 bg-black text-white rounded-full font-semibold hover:bg-accent transition-colors"
             >
-              Discover FS Softwares Platform
+              Open FS Solution Explorer
               <ArrowUpRight size={20} />
             </a>
+            <p className="text-xs text-gray-500 mt-3">20 systems · industry matching · side-by-side compare · gated sales briefs</p>
           </div>
         </motion.div>
       </div>

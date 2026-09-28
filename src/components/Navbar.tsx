@@ -38,9 +38,7 @@ export default function Navbar() {
       }}>
         <div className="max-w-[1400px] mx-auto px-6 md:px-10 py-4 md:py-5 flex items-center justify-between">
           <Link to="/" className="flex items-center gap-2.5 text-white group">
-            <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor" className="transition-transform group-hover:scale-110">
-              <g transform="rotate(-30 12 12)"><circle cx="7.3" cy="3.2" r="1.45"/><rect x="5.5" y="4.7" width="3.6" height="14.6" rx="1.8"/><rect x="14.9" y="4.7" width="3.6" height="14.6" rx="1.8"/><circle cx="16.7" cy="20.8" r="1.45"/></g>
-            </svg>
+            <img src="/images/tophcomm-logo.jpg" alt="" width="28" height="28" className="rounded-md bg-white object-contain p-0.5" />
             <span className="text-[15.5px] font-semibold tracking-tight">Tophcomm<span className="font-normal opacity-70">.systems</span></span>
           </Link>
           {isHome && (

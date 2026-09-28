@@ -100,7 +100,7 @@ dist/
 
 All "Explore FS Softwares" buttons point to:
 ```
-https://fs-softwares-library.sassy-goat-1694.chatgpt.site
+https://fs-library.sassy-goat-1694.chatgpt.site/
 ```
 
 **Locations**:
@@ -376,7 +376,7 @@ For questions or updates:
 - Image integration: See `HOW-TO-ADD-IMAGES.md`
 - Product catalog: See `src/data/softwareCatalog.ts`
 - Content updates: Edit component files directly
-- Discovery Portal: https://fs-softwares-library.sassy-goat-1694.chatgpt.site
+- Discovery Portal: https://fs-library.sassy-goat-1694.chatgpt.site/
 
 ---
 

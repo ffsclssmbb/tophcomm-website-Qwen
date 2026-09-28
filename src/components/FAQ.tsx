@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { DISCOVERY_URL } from '../data/softwareCatalog';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Plus, Minus } from 'lucide-react';
 
@@ -104,7 +104,7 @@ export default function FAQ() {
             </svg>
           </a>
           <a
-            href="https://fs-softwares-library.sassy-goat-1694.chatgpt.site"
+            href={DISCOVERY_URL}
             target="_blank"
             rel="noopener noreferrer"
             className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-black text-white font-medium text-sm hover:bg-accent transition-all"

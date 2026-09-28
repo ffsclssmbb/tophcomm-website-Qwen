@@ -1,6 +1,6 @@
 import { motion } from 'framer-motion';
 import { Cpu, CreditCard, Zap, Shield, ArrowUpRight } from 'lucide-react';
-import { softwareProducts, softwareCategories } from '../data/softwareCatalog';
+import { softwareProducts, softwareCategories, DISCOVERY_URL } from '../data/softwareCatalog';
 
 export default function Innovation() {
   // Get featured products from each category
@@ -56,7 +56,7 @@ export default function Innovation() {
             </div>
 
             <a 
-              href="https://fs-softwares-library.sassy-goat-1694.chatgpt.site"
+              href={DISCOVERY_URL}
               target="_blank"
               rel="noopener noreferrer"
               className="inline-flex items-center gap-2 text-green-400 hover:text-green-300 transition-colors text-sm font-medium"
@@ -125,7 +125,7 @@ export default function Innovation() {
               </p>
             </div>
             <a
-              href="https://member-tophcomm-fssoftwares.netlify.app/#/intake"
+              href={DISCOVERY_URL}
               target="_blank"
               rel="noopener noreferrer"
               className="mt-4 md:mt-0 inline-flex items-center gap-2 px-6 py-3 bg-white text-black rounded-full font-semibold hover:bg-accent transition-colors"

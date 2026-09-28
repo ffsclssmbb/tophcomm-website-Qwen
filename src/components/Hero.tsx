@@ -1,5 +1,6 @@
 import { lazy, Suspense } from 'react';
 import { motion } from 'framer-motion';
+import { DISCOVERY_URL } from '../data/softwareCatalog';
 const Hero3D = lazy(() => import('./Hero3D'));
 
 export default function Hero() {
@@ -26,10 +27,10 @@ export default function Hero() {
         </motion.p>
         <motion.div className="flex flex-wrap items-center justify-center gap-3 mt-7" initial={{ opacity: 0, y: 16 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.55, delay: 0.75 }}>
           <a href="#contact" className="btn btn-solid" style={{ height: 42, padding: '0 18px' }}>Start for Free<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
-          <a href="#integration" className="btn btn-ghost" style={{ height: 42, padding: '0 18px' }}>Explore Solutions</a>
+          <a href={DISCOVERY_URL} target="_blank" rel="noopener noreferrer" className="btn btn-ghost" style={{ height: 42, padding: '0 18px' }}>Explore Solutions</a>
         </motion.div>
         <motion.div className="flex flex-wrap justify-center gap-2 mt-10" initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 1 }}>
-          {['NCR Hub', 'Cebu Hub', 'Davao HQ'].map((hub) => (
+          {['Davao HQ', 'Manila · Opening @ QC', 'Cebu · Opening @ Mabolo'].map((hub) => (
             <span key={hub} className="text-[11px] tracking-wide uppercase px-3 py-1.5 rounded-full border border-white/10 bg-white/5 text-muted">{hub}</span>
           ))}
         </motion.div>

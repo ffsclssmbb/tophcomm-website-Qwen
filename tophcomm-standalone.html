@@ -267,6 +267,33 @@ a:focus-visible,button:focus-visible,input:focus-visible,textarea:focus-visible,
 .about-card p{font-size:.88rem;color:var(--muted);line-height:1.55;margin:0}
 .about-card-icon{font-size:1.1rem;margin-bottom:.5rem;color:var(--green)}
 
+.explorer{border:1px solid var(--border);border-radius:20px;overflow:hidden;background:rgba(255,255,255,.02);margin-top:2rem}
+.explorer-head{padding:1.25rem 1.5rem;border-bottom:1px solid var(--border);display:flex;flex-wrap:wrap;gap:1rem;justify-content:space-between;align-items:flex-end}
+.explorer-grid{display:grid}
+@media(min-width:960px){.explorer-grid{grid-template-columns:260px 1fr}}
+.explorer-filters{padding:1.25rem 1.5rem;border-bottom:1px solid var(--border)}
+@media(min-width:960px){.explorer-filters{border-bottom:0;border-right:1px solid var(--border)}}
+.explorer-filters select,.explorer-search input{width:100%;background:#000;color:#fff;border:1px solid var(--border);border-radius:8px;padding:.65rem .75rem;font-size:.9rem}
+.pain-opt{display:flex;gap:.5rem;align-items:flex-start;font-size:.82rem;color:#ccc;margin:.4rem 0;cursor:pointer}
+.explorer-results{padding:1.25rem 1.5rem}
+.ex-cards{display:grid;gap:.9rem}
+@media(min-width:760px){.ex-cards{grid-template-columns:1fr 1fr}}
+.ex-card{border:1px solid var(--border);border-radius:14px;padding:1rem;background:rgba(0,0,0,.4)}
+.ex-card.selected{border-color:rgba(74,222,128,.55)}
+.ex-card h4{font-size:.98rem;margin:.35rem 0}
+.ex-meta{font-size:.7rem;color:var(--muted);letter-spacing:.06em}
+.ex-tags{display:flex;flex-wrap:wrap;gap:.35rem;margin:.6rem 0}
+.ex-tags span{font-size:.7rem;padding:.15rem .5rem;border-radius:999px;background:rgba(255,255,255,.06);color:#bbb}
+.ex-actions{display:flex;gap:.5rem;align-items:center}
+.ex-actions button{background:none;border:1px solid var(--border);color:#ddd;border-radius:999px;padding:.3rem .7rem;font-size:.75rem;cursor:pointer}
+.ex-tray{border-top:1px solid var(--border);padding:1rem 1.5rem;display:flex;flex-wrap:wrap;gap:.5rem;align-items:center}
+.chip{display:inline-flex;gap:.4rem;align-items:center;font-size:.75rem;padding:.25rem .7rem;border-radius:999px;border:1px solid var(--border);background:rgba(255,255,255,.05)}
+.chip button{background:none;border:0;color:#fff;cursor:pointer}
+.ex-rec{border:1px solid rgba(74,222,128,.25);background:rgba(74,222,128,.06);border-radius:14px;padding:1rem;margin-bottom:1rem}
+.ex-dialog{position:fixed;inset:0;z-index:200;background:rgba(0,0,0,.72);display:none;align-items:center;justify-content:center;padding:1rem}
+.ex-dialog.open{display:flex}
+.ex-dialog .panel{max-width:32rem;width:100%;background:#111;border:1px solid var(--border);border-radius:16px;padding:1.25rem}
+
 </style>
 </head>
 <body>
@@ -382,6 +409,53 @@ a:focus-visible,button:focus-visible,input:focus-visible,textarea:focus-visible,
         <h3 style="margin-top:.5rem">DigiCard</h3>
         <p>NFC-ready digital business cards with analytics, branding, and team management.</p>
         <a class="btn btn-ghost" href="#/digicard" data-route="digicard" style="border-color:rgba(249,115,22,.4);color:#fb923c">Open DigiCard →</a>
+      </div>
+    </div>
+
+    <div class="explorer reveal" id="explorer">
+      <div class="explorer-head">
+        <div>
+          <p class="eyebrow" style="margin:0 0 .4rem">01 / Explore the library</p>
+          <h3 style="margin:0;font-size:1.35rem">Start with your customer.</h3>
+          <p style="color:var(--muted);font-size:.85rem;margin-top:.4rem">20 systems · industry matching · compare up to 3</p>
+        </div>
+        <a class="btn btn-ghost" href="https://fs-library.sassy-goat-1694.chatgpt.site/" target="_blank" rel="noopener noreferrer">Open full explorer →</a>
+      </div>
+      <div class="explorer-grid">
+        <aside class="explorer-filters" aria-label="Customer context">
+          <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:.75rem">
+            <strong style="font-size:.85rem">Customer context</strong>
+            <button type="button" class="btn btn-ghost" id="ex-reset" style="height:32px;padding:0 10px;font-size:12px">Reset</button>
+          </div>
+          <label for="ex-industry" class="eyebrow">Industry</label>
+          <select id="ex-industry" style="margin:0.4rem 0 1rem"><option value="all">All industries</option></select>
+          <fieldset style="border:0;padding:0">
+            <legend class="eyebrow">What needs to improve?</legend>
+            <div id="ex-pains"></div>
+          </fieldset>
+        </aside>
+        <div class="explorer-results">
+          <label class="explorer-search" style="display:block;margin-bottom:1rem">
+            <span class="sr-only">Search systems</span>
+            <input id="ex-search" type="search" placeholder="Search systems, modules or pain points…"/>
+          </label>
+          <p id="ex-count" style="font-size:.85rem;margin-bottom:.9rem">Loading library…</p>
+          <div id="ex-rec"></div>
+          <div class="ex-cards" id="ex-cards"></div>
+        </div>
+      </div>
+      <div class="ex-tray" id="ex-tray" hidden></div>
+    </div>
+    <div class="ex-dialog" id="ex-dialog" role="dialog" aria-modal="true" aria-labelledby="ex-dialog-title">
+      <div class="panel">
+        <div style="display:flex;justify-content:space-between;gap:1rem">
+          <div>
+            <p class="eyebrow" id="ex-dialog-label">Solution profile</p>
+            <h3 id="ex-dialog-title" style="margin:.2rem 0 .6rem"></h3>
+          </div>
+          <button type="button" class="btn btn-ghost" id="ex-close" aria-label="Close" style="height:36px;width:36px;padding:0">×</button>
+        </div>
+        <div id="ex-dialog-body"></div>
       </div>
     </div>
   </div>
@@ -755,6 +829,84 @@ a:focus-visible,button:focus-visible,input:focus-visible,textarea:focus-visible,
     toast('Inquiry saved locally. We\'ll follow up at your email.');
     e.target.reset();
   });
+
+  /* FS Solution Explorer (synced to 2026 Master Library) */
+  (function explorer(){
+    const DISCOVERY='https://fs-library.sassy-goat-1694.chatgpt.site/';
+    const industries=[['retail','Retail & stores'],['distribution','Distribution & wholesale'],['food','Restaurant & café'],['manufacturing','Manufacturing'],['construction','Construction'],['telecom','Telecommunications'],['transport','Transport & fleet'],['rental','Car rental & mobility'],['services','Service businesses'],['property','Property & real estate'],['hospitality','Hotel & hospitality'],['healthcare','Clinic & healthcare'],['education','Education & schools'],['ecommerce','E-commerce']];
+    const priorities=[['financial','Slow financial reporting'],['inventory','Stockouts & stock discrepancies'],['cashflow','Delayed billing & collections'],['margin','Unclear costs & margins'],['control','Weak controls & accountability'],['workforce','Manual workforce coordination'],['field','Poor visibility of field work'],['leads','Missed leads & follow-ups'],['schedule','Scheduling & availability gaps'],['records','Disconnected operational records'],['purchasing','Purchasing & supplier leakage'],['service','Service delays & handoff gaps']];
+    const catalog=[
+      {id:'accounting',n:'01',name:'Accounting & Financial Management',desc:'Financial backbone: all operational systems ultimately reconcile to the FS accounting core.',mods:['General Ledger','AR / AP','Banking & Reconciliation'],market:'All industries',ind:['all'],tags:['financial','cashflow','control']},
+      {id:'pos-retail',n:'02',name:'POS & Retail Management',desc:'Connects every sale to stock, payment, tax and the ledger.',mods:['POS','Cashier & Shift','Product & Pricing'],market:'Retail / Stores',ind:['retail'],tags:['inventory','control','cashflow']},
+      {id:'distribution',n:'03',name:'Distribution & Wholesale Management',desc:'Controls the full order-to-cash cycle for distributors.',mods:['Sales Orders','Customer Credit','Warehouse'],market:'Distribution / Wholesale',ind:['distribution'],tags:['inventory','cashflow','margin']},
+      {id:'inventory',n:'04',name:'Inventory & Warehouse Management',desc:'Provides the shared inventory truth used by retail, distribution, manufacturing and e-commerce.',mods:['Warehouse','Stock Ledger','Barcode / Batch / Serial'],market:'Product businesses',ind:['retail','distribution','manufacturing','ecommerce','food','construction','healthcare'],tags:['inventory','margin']},
+      {id:'restaurant',n:'05',name:'Restaurant & Café Management',desc:'Turns menu sales into measurable food cost and profitability.',mods:['POS','Menu & Recipes','Kitchen'],market:'Food & Beverage',ind:['food'],tags:['inventory','margin','service']},
+      {id:'manufacturing',n:'06',name:'Manufacturing & Production Management',desc:'Links raw materials to finished-goods cost and profitability.',mods:['BOM','Work Orders','Material Planning'],market:'Manufacturing',ind:['manufacturing'],tags:['inventory','margin','service']},
+      {id:'construction',n:'07',name:'Construction & Project Management',desc:'Creates a project-level commercial and financial control system.',mods:['Contracts','Projects','BOQ / Budget'],market:'Construction',ind:['construction'],tags:['margin','cashflow','purchasing']},
+      {id:'telecom',n:'08',name:'Telecom Project & Field Operations',desc:'Specialized operating layer for telecom deployment and field programs.',mods:['Programs / Sites','Field Operations','Equipment'],market:'Telecommunications',ind:['telecom'],tags:['field','workforce','cashflow','margin']},
+      {id:'transport',n:'09',name:'Transport & Fleet Management',desc:'Measures every vehicle as an operational and financial unit.',mods:['Vehicles','Drivers','Trips'],market:'Transportation',ind:['transport','rental','telecom'],tags:['margin','control','schedule']},
+      {id:'car-rental',n:'10',name:'Car Rental & Mobility Management',desc:'Manages the rental lifecycle from booking to return and settlement.',mods:['Reservations','Rental Contracts','Dispatch'],market:'Car rental / mobility',ind:['rental'],tags:['schedule','cashflow','control']},
+      {id:'field-service',n:'11',name:'Service & Field Service Management',desc:'Connects field execution directly to service revenue and margin.',mods:['Service Requests','Scheduling','Work Orders'],market:'Service businesses',ind:['services','telecom'],tags:['field','schedule','cashflow','workforce']},
+      {id:'crm',n:'12',name:'CRM & Sales Management',desc:'Creates the commercial front door to the FS ecosystem.',mods:['Leads','Opportunities','Quotes'],market:'All industries',ind:['all'],tags:['leads','records']},
+      {id:'procurement',n:'13',name:'Procurement & Supplier Management',desc:'Applies structured control before money leaves the business.',mods:['Requests','RFQ','Supplier Comparison'],market:'All industries',ind:['all'],tags:['purchasing','control']},
+      {id:'hr-payroll',n:'14',name:'HR, Payroll & Workforce Management',desc:'Turns workforce activity into controlled payroll and labor-cost data.',mods:['Employee Master','Attendance','Leave'],market:'All industries',ind:['all'],tags:['workforce','margin']},
+      {id:'asset',n:'15',name:'Asset & Equipment Management',desc:'Provides lifecycle control from acquisition to retirement.',mods:['Asset Register','Capitalization','Assignment'],market:'Asset-heavy industries',ind:['manufacturing','construction','telecom','transport','rental','property','hospitality'],tags:['records','schedule','margin']},
+      {id:'property',n:'16',name:'Property & Real Estate Management',desc:'Links property operations to recurring revenue and cost.',mods:['Properties','Units','Tenants'],market:'Real estate',ind:['property'],tags:['cashflow','records','margin']},
+      {id:'hotel',n:'17',name:'Hotel & Hospitality Management',desc:'Unifies room revenue and ancillary revenue centers.',mods:['Reservations','Rooms','Guest'],market:'Hospitality',ind:['hospitality'],tags:['schedule','cashflow','records']},
+      {id:'clinic',n:'18',name:'Clinic & Healthcare Management',desc:'Separates sensitive clinical data from controlled financial workflows.',mods:['Patient','Appointments','Services'],market:'Healthcare',ind:['healthcare'],tags:['schedule','records','inventory']},
+      {id:'education',n:'19',name:'Education & School Management',desc:'Connects the student lifecycle with institutional financial management.',mods:['Student','Enrollment','Fees'],market:'Education',ind:['education'],tags:['records','cashflow','workforce']},
+      {id:'ecommerce',n:'20',name:'E-Commerce & Omnichannel Management',desc:'Creates one commercial layer across web, marketplace and physical channels.',mods:['Channels','Orders','Inventory Sync'],market:'E-commerce',ind:['ecommerce','retail'],tags:['inventory','records','cashflow']}
+    ];
+    const state={industry:'all',pains:[],query:'',compare:[]};
+    const $id=id=>document.getElementById(id);
+    const industrySel=$id('ex-industry');
+    if(!industrySel)return;
+    industries.forEach(([id,label])=>{const o=document.createElement('option');o.value=id;o.textContent=label;industrySel.appendChild(o)});
+    $id('ex-pains').innerHTML=priorities.map(([id,label])=>`<label class="pain-opt"><input type="checkbox" value="${id}"><span>${label}</span></label>`).join('');
+    const eligible=s=>state.industry==='all'||s.ind.includes('all')||s.ind.includes(state.industry);
+    const covered=s=>state.pains.filter(p=>s.tags.includes(p));
+    function results(){
+      const q=state.query.trim().toLowerCase();
+      return catalog.filter(s=>eligible(s)&&(!q||[s.name,s.market,s.desc,...s.mods].join(' ').toLowerCase().includes(q)))
+        .sort((a,b)=>covered(b).length-covered(a).length||Number(a.n)-Number(b.n));
+    }
+    function render(){
+      const list=results();
+      const label=industries.find(i=>i[0]===state.industry);
+      $id('ex-count').textContent=`${list.length} ${list.length===1?'solution':'solutions'}${state.industry==='all'?' in the library':' for '+(label?label[1].toLowerCase():'')}`;
+      const top=list[0];
+      $id('ex-rec').innerHTML=(state.pains.length&&top&&covered(top).length)?`<div class="ex-rec"><p class="eyebrow">Recommended starting point</p><h4>FS ${top.name}</h4><p style="color:var(--muted);font-size:.85rem;margin-top:.3rem">Covers ${covered(top).length} of ${state.pains.length} selected priorities.</p></div>`:'';
+      $id('ex-cards').innerHTML=list.map(s=>{
+        const fit=covered(s);
+        const sel=state.compare.includes(s.id)?' selected':'';
+        return `<article class="ex-card${sel}"><div class="ex-meta">FS / ${s.n} · ${s.market}</div>${state.pains.length?`<p style="color:#4ade80;font-size:.75rem;margin:.35rem 0">${fit.length?fit.length+' of '+state.pains.length+' priorities covered':'Complementary system'}</p>`:''}<h4>${s.name}</h4><p>${s.desc}</p><div class="ex-tags">${s.mods.map(m=>`<span>${m}</span>`).join('')}</div><div class="ex-actions"><button type="button" data-detail="${s.id}">View</button><button type="button" data-compare="${s.id}">${state.compare.includes(s.id)?'Added':'Compare'}</button></div></article>`;
+      }).join('')||'<p style="color:var(--muted)">No systems found.</p>';
+      const tray=$id('ex-tray');
+      if(!state.compare.length){tray.hidden=true;tray.innerHTML='';return;}
+      tray.hidden=false;
+      const items=state.compare.map(id=>catalog.find(s=>s.id===id)).filter(Boolean);
+      tray.innerHTML=`<span class="eyebrow" style="margin:0">Shortlist ${items.length}/3</span>${items.map(s=>`<span class="chip">${s.name}<button type="button" data-remove="${s.id}" aria-label="Remove">×</button></span>`).join('')}<a class="btn btn-solid" style="height:34px;padding:0 12px;font-size:12px" href="${DISCOVERY}" target="_blank" rel="noopener noreferrer">Continue in Discovery</a>`;
+    }
+    function toggle(id){
+      if(state.compare.includes(id))state.compare=state.compare.filter(x=>x!==id);
+      else if(state.compare.length>=3)toast('Compare up to 3 systems.');
+      else state.compare.push(id);
+      render();
+    }
+    industrySel.addEventListener('change',e=>{state.industry=e.target.value;state.pains=[];$id('ex-pains').querySelectorAll('input').forEach(i=>i.checked=false);render()});
+    $id('ex-pains').addEventListener('change',e=>{if(!e.target.matches('input'))return;const id=e.target.value;state.pains=e.target.checked?[...state.pains,id]:state.pains.filter(p=>p!==id);render()});
+    $id('ex-search').addEventListener('input',e=>{state.query=e.target.value;render()});
+    $id('ex-reset').addEventListener('click',()=>{state.industry='all';state.pains=[];state.query='';industrySel.value='all';$id('ex-search').value='';$id('ex-pains').querySelectorAll('input').forEach(i=>i.checked=false);render()});
+    document.addEventListener('click',e=>{
+      const d=e.target.closest('[data-detail]');
+      if(d){const s=catalog.find(x=>x.id===d.dataset.detail);if(!s)return;$id('ex-dialog-title').textContent='FS '+s.name;$id('ex-dialog-label').textContent='SYSTEM '+s.n+' / '+s.market;$id('ex-dialog-body').innerHTML=`<p style="color:#ccc;font-size:.9rem;line-height:1.55">${s.desc}</p><div class="ex-tags" style="margin:1rem 0">${s.mods.map(m=>`<span>${m}</span>`).join('')}</div><a class="btn btn-solid" href="${DISCOVERY}" target="_blank" rel="noopener noreferrer">Open in Discovery Portal</a>`;$id('ex-dialog').classList.add('open');return;}
+      const c=e.target.closest('[data-compare]');if(c){toggle(c.dataset.compare);return;}
+      const r=e.target.closest('[data-remove]');if(r){toggle(r.dataset.remove);}
+    });
+    $id('ex-close').addEventListener('click',()=>$id('ex-dialog').classList.remove('open'));
+    $id('ex-dialog').addEventListener('click',e=>{if(e.target.id==='ex-dialog')$id('ex-dialog').classList.remove('open')});
+    render();
+  })();
 
   /* particles */
   const canvas=document.getElementById('particles');

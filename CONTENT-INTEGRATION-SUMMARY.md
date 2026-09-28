@@ -228,7 +228,7 @@ Hero
 ## 🔗 Discovery Link
 
 All Discovery Portal buttons point to:
-**https://fs-softwares-library.sassy-goat-1694.chatgpt.site**
+**https://fs-library.sassy-goat-1694.chatgpt.site/**
 
 ---
 

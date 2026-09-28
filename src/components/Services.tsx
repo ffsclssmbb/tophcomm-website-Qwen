@@ -1,6 +1,6 @@
 import { motion } from 'framer-motion';
 import { ArrowUpRight, Maximize2, Zap, Layout } from 'lucide-react';
-import { softwareCategories, softwareProducts } from '../data/softwareCatalog';
+import { softwareCategories, softwareProducts, DISCOVERY_URL } from '../data/softwareCatalog';
 
 const services = [
   {
@@ -120,7 +120,7 @@ export default function Services() {
           {/* Discovery Link */}
           <div className="mt-12 text-center">
             <a
-              href="https://fs-softwares-library.sassy-goat-1694.chatgpt.site"
+              href={DISCOVERY_URL}
               target="_blank"
               rel="noopener noreferrer"
               className="btn btn-solid"

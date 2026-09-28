@@ -1,7 +1,7 @@
 # FS Softwares Catalog — Updated with Real Data
 
 ## 📦 Source
-**URL**: https://fs-softwares-library.sassy-goat-1694.chatgpt.site  
+**URL**: https://fs-library.sassy-goat-1694.chatgpt.site/  
 **Title**: Solution Explorer · FS Softwares  
 **Description**: Browse and compare 20 systems freely
 
@@ -78,7 +78,7 @@ The catalog has been replaced with the **actual 20 business management solutions
 
 All Discovery Link buttons now point to:
 ```
-https://fs-softwares-library.sassy-goat-1694.chatgpt.site
+https://fs-library.sassy-goat-1694.chatgpt.site/
 ```
 
 ### Locations:
@@ -149,7 +149,7 @@ Each product now includes:
 
 ## 📖 How to Use
 
-The Solution Explorer at https://fs-softwares-library.sassy-goat-1694.chatgpt.site allows users to:
+The Solution Explorer at https://fs-library.sassy-goat-1694.chatgpt.site/ allows users to:
 - Browse all 20 systems
 - Compare solutions side-by-side
 - Search by system, module, or pain point

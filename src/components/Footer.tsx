@@ -1,6 +1,7 @@
 import { useRef } from 'react';
 import { motion, useScroll, useTransform } from 'framer-motion';
 import { ArrowUp, ArrowUpRight } from 'lucide-react';
+import { DISCOVERY_URL } from '../data/softwareCatalog';
 
 export default function Footer() {
   const containerRef = useRef<HTMLDivElement>(null);
@@ -69,8 +70,11 @@ export default function Footer() {
               <a href="#" className="text-sm text-muted hover:text-text transition-colors">
                 Terms of Service
               </a>
-              <a href="#" className="text-sm text-muted hover:text-text transition-colors">
-                LinkedIn
+              <a href={DISCOVERY_URL} target="_blank" rel="noopener noreferrer" className="text-sm text-muted hover:text-text transition-colors">
+                Discovery Portal
+              </a>
+              <a href="/digicard" className="text-sm text-muted hover:text-text transition-colors">
+                DigiCard
               </a>
               <a href="#" className="text-sm text-muted hover:text-text transition-colors">
                 Twitter
