@@ -1,0 +1,681 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<meta name="description" content="Tophcomm Systems & FS Softwares — Business management systems for the Philippines. NCR · Cebu · Davao."/>
+<meta name="theme-color" content="#000000"/>
+<title>Tophcomm Systems — Business Infrastructure</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet"/>
+<style>
+:root{
+  --bg:#000;--text:#fff;--muted:#9a9a9a;--border:rgba(255,255,255,.12);
+  --blue:#3b82f6;--orange:#f97316;--green:#4ade80;
+  --font:"Inter",system-ui,sans-serif;--serif:"Instrument Serif",Georgia,serif;
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:var(--font);background:var(--bg);color:var(--text);-webkit-font-smoothing:antialiased;min-height:100vh;overflow-x:hidden}
+a{color:inherit;text-decoration:none}
+button,input,textarea,select{font-family:inherit}
+.grain{position:fixed;inset:0;z-index:9998;pointer-events:none;opacity:.07;mix-blend-mode:overlay;
+  background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")}
+
+/* NAV */
+.nav{position:fixed;top:0;left:0;right:0;z-index:100;background:rgba(0,0,0,.55);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);border-bottom:1px solid rgba(255,255,255,.08);transition:.3s}
+.nav.scrolled{background:rgba(0,0,0,.82);border-bottom-color:rgba(255,255,255,.12)}
+.nav-inner{max-width:1400px;margin:0 auto;padding:1rem 1.5rem;display:flex;align-items:center;justify-content:space-between;gap:1rem}
+.logo{display:flex;align-items:center;gap:.6rem;font-weight:600;font-size:15.5px}
+.logo span{font-weight:400;opacity:.7}
+.nav-links{display:none;gap:.3rem;align-items:center}
+@media(min-width:960px){.nav-links{display:flex}}
+.nav-pill{height:38px;padding:0 14px;border-radius:7px;border:1px solid rgba(198,198,198,.4);background:linear-gradient(105deg,#050505,#2a2a2a 48%,#4a4a4a);color:#f3f3f3;font-size:13px;display:inline-flex;align-items:center;transition:.3s}
+.nav-pill:hover{border-color:rgba(235,235,235,.9);box-shadow:0 0 16px rgba(200,210,230,.15)}
+.nav-pill.client{border-color:rgba(59,130,246,.5)}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;height:42px;padding:0 18px;border-radius:6px;font-size:13.5px;font-weight:500;cursor:pointer;border:none;transition:.3s;position:relative;overflow:hidden}
+.btn-solid{background:linear-gradient(180deg,#fff,#e7e7e7 48%,#cfcfcf);color:#111;border:1px solid #fff}
+.btn-solid:hover{box-shadow:0 0 22px rgba(186,208,255,.35)}
+.btn-ghost{background:rgba(255,255,255,.06);color:#fff;border:1px solid rgba(198,198,198,.4)}
+.btn-ghost:hover{background:rgba(255,255,255,.1)}
+.btn:disabled{opacity:.5;cursor:not-allowed}
+.menu-btn{width:40px;height:40px;border-radius:6px;border:1px solid var(--border);background:rgba(255,255,255,.05);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:5px;cursor:pointer}
+@media(min-width:960px){.menu-btn{display:none}}
+.menu-btn span{width:16px;height:2px;background:#fff;transition:.25s}
+.mobile-menu{display:none;position:fixed;inset:0;z-index:99;background:rgba(0,0,0,.96);backdrop-filter:blur(24px);flex-direction:column;align-items:center;justify-content:center;gap:1.1rem}
+.mobile-menu.open{display:flex}
+.mobile-menu a{font-size:1.4rem;font-weight:500}
+
+.view{display:none;min-height:100vh}
+.view.active{display:block}
+
+/* HERO */
+.hero{position:relative;min-height:100vh;display:flex;align-items:flex-end;justify-content:center;overflow:hidden;padding-bottom:5.5rem}
+#particles{position:absolute;inset:0;width:100%;height:100%;z-index:0}
+.hero-grad{position:absolute;inset:0;z-index:1;pointer-events:none;background:radial-gradient(ellipse 80% 50% at 50% 0%,rgba(59,130,246,.12),transparent 50%),linear-gradient(to bottom,transparent 55%,#000 100%)}
+.hero-content{position:relative;z-index:2;text-align:center;max-width:880px;padding:0 1.5rem;width:100%}
+.badge{display:inline-flex;align-items:center;gap:8px;padding:6px 14px;border-radius:999px;font-size:12px;border:1px solid rgba(255,255,255,.12);background:rgba(255,255,255,.04);margin-bottom:1.25rem;color:#ddd}
+.hero h1{font-size:clamp(2.4rem,6vw,4.6rem);font-weight:500;letter-spacing:-.045em;line-height:1.12}
+.hero h1 em{font-family:var(--serif);font-style:italic;font-weight:400;background:linear-gradient(135deg,#fff,#93c5fd);-webkit-background-clip:text;background-clip:text;color:transparent}
+.hero .lede{color:var(--muted);font-size:clamp(15px,2vw,18px);max-width:480px;margin:1.25rem auto 0;line-height:1.55}
+.hero-actions{display:flex;flex-wrap:wrap;gap:.75rem;justify-content:center;margin-top:1.75rem}
+.hubs{display:flex;flex-wrap:wrap;gap:.5rem;justify-content:center;margin-top:2.25rem}
+.hub{font-size:11px;letter-spacing:.08em;text-transform:uppercase;padding:6px 12px;border-radius:999px;border:1px solid rgba(255,255,255,.1);background:rgba(255,255,255,.04);color:var(--muted)}
+
+/* SECTIONS */
+section{padding:4.5rem 1.5rem}
+@media(min-width:768px){section{padding:5.5rem 2.5rem}}
+.wrap{max-width:1400px;margin:0 auto}
+.eyebrow{font-size:11px;text-transform:uppercase;letter-spacing:.12em;color:var(--muted);margin-bottom:.75rem}
+h2{font-size:clamp(1.85rem,4vw,3.25rem);font-weight:500;letter-spacing:-.03em;line-height:1.15}
+.grid-2{display:grid;gap:1.25rem}@media(min-width:768px){.grid-2{grid-template-columns:1fr 1fr}}
+.grid-3{display:grid;gap:1.25rem}@media(min-width:768px){.grid-3{grid-template-columns:repeat(3,1fr)}}
+.grid-4{display:grid;gap:1rem;grid-template-columns:1fr}@media(min-width:640px){.grid-4{grid-template-columns:1fr 1fr}}@media(min-width:1024px){.grid-4{grid-template-columns:repeat(4,1fr)}}
+.grid-6{display:grid;gap:.75rem;grid-template-columns:repeat(2,1fr)}@media(min-width:768px){.grid-6{grid-template-columns:repeat(3,1fr)}}@media(min-width:1100px){.grid-6{grid-template-columns:repeat(6,1fr)}}
+
+.card{background:linear-gradient(180deg,rgba(255,255,255,.04),rgba(255,255,255,.01));border:1px solid var(--border);border-radius:14px;padding:1.35rem;transition:.3s}
+.card:hover{border-color:rgba(255,255,255,.22);background:rgba(255,255,255,.06)}
+.card h3{font-size:1.05rem;font-weight:500;margin:.65rem 0 .35rem}
+.card p{font-size:.875rem;color:var(--muted);line-height:1.55}
+.icon{width:32px;height:32px;color:var(--blue)}
+
+.division{border-radius:22px;padding:2.25rem;position:relative;overflow:hidden;border:1px solid var(--border)}
+.division.fs{background:linear-gradient(135deg,#111,#000)}
+.division.digi{background:linear-gradient(135deg,#1a1208,#0a0a0a);border-color:rgba(249,115,22,.25)}
+.division h3{font-size:1.65rem;font-weight:600;margin:.5rem 0}
+.division p{color:#aaa;line-height:1.6;margin-bottom:1.1rem}
+.tag{display:inline-block;font-size:11px;padding:4px 10px;border-radius:999px;background:rgba(249,115,22,.15);color:var(--orange);border:1px solid rgba(249,115,22,.3)}
+
+.hub-card{padding:1.4rem;border-radius:14px;border:1px solid var(--border);background:rgba(255,255,255,.03)}
+.hub-card strong{display:block;font-size:1.1rem;margin-bottom:.3rem}
+.hub-card span{font-size:.8rem;color:var(--muted)}
+
+.step{display:flex;gap:1rem;padding:1.1rem 0;border-bottom:1px solid rgba(255,255,255,.06)}
+.step:last-child{border-bottom:none}
+.step-num{width:36px;height:36px;border-radius:10px;background:rgba(59,130,246,.15);color:var(--blue);display:flex;align-items:center;justify-content:center;font-size:.85rem;font-weight:600;flex-shrink:0}
+.step h4{font-size:.95rem;font-weight:500;margin-bottom:.25rem}
+.step p{font-size:.82rem;color:var(--muted);line-height:1.5}
+
+.price-card{border-radius:18px;padding:1.75rem;border:1px solid var(--border);background:rgba(255,255,255,.03);position:relative}
+.price-card.hot{border-color:rgba(59,130,246,.45);background:linear-gradient(180deg,rgba(59,130,246,.1),rgba(255,255,255,.02))}
+.price-card .badge-hot{position:absolute;top:14px;right:14px;font-size:10px;padding:3px 8px;border-radius:999px;background:var(--blue);color:#fff;font-weight:600}
+.price-card h3{font-size:1.2rem;margin-bottom:.2rem}
+.price-card .sub{font-size:.8rem;color:var(--muted);margin-bottom:1rem}
+.price-row{display:flex;justify-content:space-between;font-size:.82rem;padding:.45rem 0;border-bottom:1px solid rgba(255,255,255,.06);color:#ccc}
+.price-row:last-child{border-bottom:none}
+.price-row span:last-child{color:#fff;font-weight:500}
+
+.bundle{border:1px solid var(--border);border-radius:14px;padding:1.25rem;background:rgba(255,255,255,.03)}
+.bundle h4{font-size:1rem;margin-bottom:.25rem}
+.bundle .disc{color:var(--green);font-size:.75rem;font-weight:600}
+.bundle .meta{font-size:.8rem;color:var(--muted);margin:.5rem 0}
+.bundle .price{font-size:.95rem;font-weight:500}
+
+.faq-item{border:1px solid var(--border);border-radius:12px;margin-bottom:.65rem;overflow:hidden;background:rgba(255,255,255,.02)}
+.faq-q{width:100%;text-align:left;padding:1.1rem 1.25rem;background:transparent;border:none;color:#fff;font-size:.95rem;font-weight:500;cursor:pointer;display:flex;justify-content:space-between;align-items:center;gap:1rem}
+.faq-q:hover{background:rgba(255,255,255,.03)}
+.faq-a{display:none;padding:0 1.25rem 1.15rem;font-size:.88rem;color:var(--muted);line-height:1.6}
+.faq-item.open .faq-a{display:block}
+.faq-item.open .faq-q span{transform:rotate(45deg)}
+.faq-q span{transition:.25s;font-size:1.25rem;line-height:1;color:var(--muted)}
+
+.contact-form{max-width:560px;margin:0 auto}
+.field{margin-bottom:1rem}
+.field label{display:block;font-size:11px;color:var(--muted);margin-bottom:6px}
+.field input,.field textarea,.field select{
+  width:100%;padding:0 14px;border-radius:10px;background:rgba(255,255,255,.05);
+  border:1px solid var(--border);color:#fff;font-size:.95rem;outline:none
+}
+.field input,.field select{height:44px}
+.field textarea{padding:12px 14px;min-height:110px;resize:vertical}
+.field input:focus,.field textarea:focus,.field select:focus{border-color:rgba(59,130,246,.6)}
+
+footer{border-top:1px solid var(--border);padding:3rem 1.5rem 2rem;color:var(--muted);font-size:.85rem}
+footer .wrap{display:flex;flex-wrap:wrap;gap:2rem;justify-content:space-between}
+footer a:hover{color:#fff}
+footer .cols{display:grid;grid-template-columns:repeat(2,1fr);gap:1.5rem}
+@media(min-width:700px){footer .cols{grid-template-columns:repeat(4,1fr)}}
+footer h5{color:#fff;font-size:.8rem;text-transform:uppercase;letter-spacing:.08em;margin-bottom:.75rem}
+footer ul{list-style:none}
+footer li{margin-bottom:.4rem}
+
+/* DIGICARD */
+.digi-hero{display:grid;gap:2rem;align-items:center;padding-top:5.5rem;min-height:68vh}
+@media(min-width:900px){.digi-hero{grid-template-columns:1fr 1fr}}
+.digi-card-stage{height:380px;border-radius:16px;border:1px solid var(--border);background:radial-gradient(ellipse at 50% 40%,rgba(249,115,22,.12),transparent 60%),#0a0a0a;display:flex;align-items:center;justify-content:center;perspective:1000px}
+.card-3d{width:280px;height:172px;border-radius:14px;background:linear-gradient(145deg,#1a1a1a,#050505);border:1px solid rgba(255,255,255,.15);box-shadow:0 25px 50px rgba(0,0,0,.5),0 0 40px rgba(249,115,22,.15);position:relative;transform-style:preserve-3d;animation:floatCard 5s ease-in-out infinite;transition:transform .4s}
+.card-3d:hover{animation-play-state:paused;transform:rotateY(-12deg) rotateX(8deg) scale(1.04)}
+@keyframes floatCard{0%,100%{transform:rotateY(-8deg) rotateX(4deg) translateY(0)}50%{transform:rotateY(8deg) rotateX(-2deg) translateY(-12px)}}
+.card-3d .stripe{position:absolute;top:28px;left:20px;right:20px;height:6px;background:var(--orange);border-radius:2px}
+.card-3d .chip{position:absolute;top:50px;left:28px;width:36px;height:28px;background:linear-gradient(135deg,#e8c547,#a07820);border-radius:4px}
+.card-3d .nfc{position:absolute;bottom:24px;right:28px;width:28px;height:28px;border:2px solid var(--orange);border-radius:50%}
+.card-3d .label{position:absolute;bottom:28px;left:28px;font-size:11px;letter-spacing:.15em;text-transform:uppercase;color:#888}
+
+/* CLIENT */
+.portal{max-width:480px;margin:0 auto;padding:6.5rem 1.5rem 4rem}
+.portal h1{font-size:1.7rem;font-weight:500;text-align:center;margin-bottom:.35rem}
+.portal .sub{text-align:center;color:var(--muted);font-size:.9rem;margin-bottom:1.5rem}
+.tabs{display:flex;border:1px solid var(--border);border-radius:10px;padding:4px;background:rgba(255,255,255,.04);margin-bottom:1.15rem}
+.tabs button{flex:1;height:40px;border:none;border-radius:8px;background:transparent;color:var(--muted);cursor:pointer;font-size:.9rem;font-weight:500}
+.tabs button.active{background:#fff;color:#000}
+.otp-input{text-align:center;font-size:1.5rem!important;letter-spacing:.4em;font-family:ui-monospace,monospace;height:56px!important}
+.alert{padding:.75rem 1rem;border-radius:10px;font-size:.85rem;margin-bottom:1rem}
+.alert-err{background:rgba(239,68,68,.12);border:1px solid rgba(239,68,68,.3);color:#f87171}
+.alert-ok{background:rgba(34,197,94,.1);border:1px solid rgba(34,197,94,.25);color:#4ade80}
+.alert-demo{background:rgba(245,158,11,.12);border:1px solid rgba(245,158,11,.3);color:#fbbf24;text-align:center;margin-bottom:1rem}
+.alert-demo code{display:block;font-size:1.5rem;letter-spacing:.35em;margin-top:.35rem;font-family:ui-monospace,monospace;color:#fcd34d}
+.dash-card{display:flex;gap:1rem;align-items:flex-start;padding:1.25rem;border-radius:14px;border:1px solid var(--border);background:rgba(255,255,255,.04);margin-bottom:1.25rem}
+.avatar{width:48px;height:48px;border-radius:50%;background:linear-gradient(135deg,#3b82f6,#4f46e5);display:flex;align-items:center;justify-content:center;font-weight:600;flex-shrink:0}
+.quick{display:grid;grid-template-columns:1fr 1fr;gap:.75rem}
+.quick button{text-align:left;padding:1rem;border-radius:12px;border:1px solid var(--border);background:rgba(255,255,255,.03);color:#fff;cursor:pointer}
+.quick button:hover{border-color:rgba(255,255,255,.25)}
+.quick button small{display:block;color:var(--muted);font-size:.75rem;margin-top:2px}
+.back-link{display:inline-flex;align-items:center;gap:6px;font-size:.85rem;color:var(--muted);margin-bottom:1.5rem}
+.back-link:hover{color:#fff}
+
+.reveal{opacity:0;transform:translateY(22px);transition:.7s ease}
+.reveal.visible{opacity:1;transform:none}
+
+.stats{display:grid;grid-template-columns:repeat(2,1fr);gap:1rem;margin-top:2rem}
+@media(min-width:700px){.stats{grid-template-columns:repeat(4,1fr)}}
+.stat{text-align:center;padding:1.25rem;border-radius:14px;border:1px solid var(--border);background:rgba(255,255,255,.03)}
+.stat strong{display:block;font-size:1.75rem;font-weight:600;letter-spacing:-.02em}
+.stat span{font-size:.75rem;color:var(--muted)}
+
+.toast{position:fixed;bottom:24px;left:50%;transform:translateX(-50%) translateY(80px);background:#111;border:1px solid rgba(255,255,255,.2);color:#fff;padding:12px 20px;border-radius:10px;font-size:.875rem;z-index:9999;opacity:0;transition:.35s;pointer-events:none}
+.toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
+</style>
+</head>
+<body>
+<div class="grain" aria-hidden="true"></div>
+<div class="toast" id="toast"></div>
+
+<nav class="nav" id="nav">
+  <div class="nav-inner">
+    <a href="#/" class="logo" data-route="home">
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><g transform="rotate(-30 12 12)"><circle cx="7.3" cy="3.2" r="1.45"/><rect x="5.5" y="4.7" width="3.6" height="14.6" rx="1.8"/><rect x="14.9" y="4.7" width="3.6" height="14.6" rx="1.8"/><circle cx="16.7" cy="20.8" r="1.45"/></g></svg>
+      Tophcomm<span>.systems</span>
+    </a>
+    <div class="nav-links" id="home-nav">
+      <a class="nav-pill" href="#services">Services</a>
+      <a class="nav-pill" href="#solutions">Products</a>
+      <a class="nav-pill" href="#process">Process</a>
+      <a class="nav-pill" href="#pricing">Pricing</a>
+      <a class="nav-pill" href="#faq">FAQ</a>
+    </div>
+    <div class="nav-links">
+      <a class="nav-pill client" href="#/client" data-route="client">Client</a>
+      <a class="btn btn-solid" href="#contact">Start for Free</a>
+    </div>
+    <button class="menu-btn" id="menuBtn" aria-label="Menu"><span></span><span></span><span></span></button>
+  </div>
+</nav>
+<div class="mobile-menu" id="mobileMenu">
+  <a href="#services" data-close>Services</a>
+  <a href="#solutions" data-close>Products</a>
+  <a href="#process" data-close>Process</a>
+  <a href="#pricing" data-close>Pricing</a>
+  <a href="#faq" data-close>FAQ</a>
+  <a href="#/client" data-route="client" data-close>Client Portal</a>
+  <a href="#/digicard" data-route="digicard" data-close style="color:#f97316">DigiCard</a>
+  <a class="btn btn-solid" href="#contact" data-close style="margin-top:1rem">Start for Free</a>
+</div>
+
+<!-- HOME -->
+<div class="view active" id="view-home">
+<header class="hero">
+  <canvas id="particles"></canvas>
+  <div class="hero-grad"></div>
+  <div class="hero-content">
+    <div class="badge">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="#fff"><path d="M12 2.6c.55 0 .88.55 1.08 2.1.62 4.7 1.52 5.6 6.22 6.22 1.55.2 2.1.53 2.1 1.08s-.55.88-2.1 1.08c-4.7.62-5.6 1.52-6.22 6.22-.2 1.55-.53 2.1-1.08 2.1s-.88-.55-1.08-2.1c-.62-4.7-1.52-5.6-6.22-6.22C3.15 12.88 2.6 12.55 2.6 12s.55-.88 2.1-1.08c4.7-.62 5.6-1.52 6.22-6.22C11.12 3.15 11.45 2.6 12 2.6z"/></svg>
+      Operational Business Infrastructure
+    </div>
+    <h1>Build <em>business systems</em> that<br/>scale across the nation.</h1>
+    <p class="lede">Deploy 20 enterprise-grade business management solutions across 12 Philippine industries. Born in Mindanao, built for the nation.</p>
+    <div class="hero-actions">
+      <a class="btn btn-solid" href="#contact">Start for Free →</a>
+      <a class="btn btn-ghost" href="#solutions">Explore Solutions</a>
+    </div>
+    <div class="hubs">
+      <span class="hub">NCR Hub</span>
+      <span class="hub">Cebu Hub</span>
+      <span class="hub">Davao HQ</span>
+    </div>
+  </div>
+</header>
+
+<section id="services">
+  <div class="wrap">
+    <p class="eyebrow reveal">What We Do</p>
+    <h2 class="reveal" style="margin-bottom:2.25rem">Core capabilities</h2>
+    <div class="grid-4">
+      <div class="card reveal"><svg class="icon" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg><h3>API Integration</h3><p>Connect systems with robust REST & GraphQL. Middleware that speaks every protocol.</p></div>
+      <div class="card reveal"><svg class="icon" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/></svg><h3>Custom Software</h3><p>ERP, CRM, dashboards — built for your exact workflows and Philippine operations.</p></div>
+      <div class="card reveal"><svg class="icon" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path d="M13 10V3L4 14h7v7l9-11h-7z"/></svg><h3>Cloud Infrastructure</h3><p>Design, migrate, and manage AWS, Azure, or GCP with enterprise-grade security.</p></div>
+      <div class="card reveal"><svg class="icon" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path d="M4 6h16M4 12h16M4 18h10"/></svg><h3>Data Pipelines</h3><p>Real-time ETL and analytics that turn operations data into actionable intelligence.</p></div>
+    </div>
+    <div class="stats reveal">
+      <div class="stat"><strong>20+</strong><span>Business solutions</span></div>
+      <div class="stat"><strong>12</strong><span>Industry verticals</span></div>
+      <div class="stat"><strong>3</strong><span>Strategic hubs</span></div>
+      <div class="stat"><strong>100+</strong><span>Deployments</span></div>
+    </div>
+  </div>
+</section>
+
+<section id="solutions">
+  <div class="wrap">
+    <p class="eyebrow reveal">FS Softwares</p>
+    <h2 class="reveal" style="margin-bottom:2rem">20+ solutions · 6 categories</h2>
+    <div class="grid-6" style="margin-bottom:2rem">
+      <div class="card reveal"><h3 style="font-size:.9rem;margin:0">Financial</h3><p style="margin-top:.35rem">Accounting, AR/AP, banking</p></div>
+      <div class="card reveal"><h3 style="font-size:.9rem;margin:0">Retail</h3><p style="margin-top:.35rem">POS, e-commerce, omnichannel</p></div>
+      <div class="card reveal"><h3 style="font-size:.9rem;margin:0">Operations</h3><p style="margin-top:.35rem">Inventory, fleet, logistics</p></div>
+      <div class="card reveal"><h3 style="font-size:.9rem;margin:0">Industry</h3><p style="margin-top:.35rem">Manufacturing, construction</p></div>
+      <div class="card reveal"><h3 style="font-size:.9rem;margin:0">Service & CRM</h3><p style="margin-top:.35rem">Field service, procurement</p></div>
+      <div class="card reveal"><h3 style="font-size:.9rem;margin:0">Enterprise</h3><p style="margin-top:.35rem">HR, healthcare, property</p></div>
+    </div>
+    <div class="grid-2 reveal">
+      <div class="division fs">
+        <p class="eyebrow" style="color:#4ade80">Systems Division</p>
+        <h3>FS Softwares</h3>
+        <p>Specialized enterprise tools — intake, workflow automation, and industry systems battle-tested in real operations.</p>
+        <a class="btn btn-ghost" href="#pricing">View pricing</a>
+      </div>
+      <div class="division digi">
+        <span class="tag">Preview · hidden route</span>
+        <h3 style="margin-top:.75rem">DigiCard</h3>
+        <p>NFC-ready digital business cards with analytics, branding, and team management.</p>
+        <a class="btn btn-ghost" href="#/digicard" data-route="digicard" style="border-color:rgba(249,115,22,.4);color:#fb923c">Open DigiCard →</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="process">
+  <div class="wrap">
+    <p class="eyebrow reveal">How We Work</p>
+    <h2 class="reveal" style="margin-bottom:.5rem">Sales to go-live</h2>
+    <p class="reveal" style="color:var(--muted);max-width:36rem;margin-bottom:2rem;font-size:.95rem;line-height:1.55">Nine-step journey with pre-transfer knowledge so your team owns the system — not just IT.</p>
+    <div class="grid-2">
+      <div class="reveal">
+        <div class="step"><div class="step-num">1</div><div><h4>Discovery call</h4><p>Understand goals, constraints, and current systems.</p></div></div>
+        <div class="step"><div class="step-num">2</div><div><h4>Operations assessment</h4><p>Map bottlenecks across branches and workflows.</p></div></div>
+        <div class="step"><div class="step-num">3</div><div><h4>Solution design</h4><p>Select modules, integrations, and deployment profile.</p></div></div>
+        <div class="step"><div class="step-num">4</div><div><h4>Proposal & commercial</h4><p>Clear pricing in PHP with 50/30/20 payment terms.</p></div></div>
+        <div class="step"><div class="step-num">5</div><div><h4>Kickoff & data prep</h4><p>Align stakeholders and clean migration sources.</p></div></div>
+      </div>
+      <div class="reveal">
+        <div class="step"><div class="step-num">6</div><div><h4>Build & configure</h4><p>Pattern-B architecture: Tauri + Flutter + API.</p></div></div>
+        <div class="step"><div class="step-num">7</div><div><h4>UAT & training</h4><p>Hands-on sessions with your operators.</p></div></div>
+        <div class="step"><div class="step-num">8</div><div><h4>Pre-transfer knowledge</h4><p>Documented ownership handoff before go-live.</p></div></div>
+        <div class="step"><div class="step-num">9</div><div><h4>Go-live & support</h4><p>Hypercare then ongoing managed support tiers.</p></div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="industries">
+  <div class="wrap">
+    <p class="eyebrow reveal">Industries</p>
+    <h2 class="reveal" style="margin-bottom:2rem">12 verticals nationwide</h2>
+    <div class="grid-4">
+      <div class="card reveal"><h3>Retail & Commerce</h3><p>POS, inventory, multi-branch control</p></div>
+      <div class="card reveal"><h3>Healthcare</h3><p>Clinics, wellness, patient ops</p></div>
+      <div class="card reveal"><h3>Logistics & Fleet</h3><p>Trips, vehicles, field ops</p></div>
+      <div class="card reveal"><h3>Construction</h3><p>Projects, materials, subcontractors</p></div>
+      <div class="card reveal"><h3>Hospitality</h3><p>Property, reservations, F&B</p></div>
+      <div class="card reveal"><h3>Manufacturing</h3><p>Production, BOM, warehouse</p></div>
+      <div class="card reveal"><h3>Education</h3><p>Enrollment, billing, campus ops</p></div>
+      <div class="card reveal"><h3>Telecom / Field</h3><p>Tickets, crews, SLA tracking</p></div>
+    </div>
+  </div>
+</section>
+
+<section id="hubs">
+  <div class="wrap">
+    <p class="eyebrow reveal">Nationwide</p>
+    <h2 class="reveal" style="margin-bottom:2rem">Three strategic hubs</h2>
+    <div class="grid-3">
+      <div class="hub-card reveal"><strong>NCR Hub</strong><span>Metro Manila / Quezon City · Luzon coverage</span></div>
+      <div class="hub-card reveal"><strong>Cebu Hub</strong><span>Cebu City · Visayas coverage</span></div>
+      <div class="hub-card reveal"><strong>Davao HQ</strong><span>Davao City · Mindanao coverage</span></div>
+    </div>
+  </div>
+</section>
+
+<section id="pricing">
+  <div class="wrap">
+    <p class="eyebrow reveal">Pricing</p>
+    <h2 class="reveal" style="margin-bottom:.5rem">Transparent PHP pricing</h2>
+    <p class="reveal" style="color:var(--muted);margin-bottom:2rem;font-size:.95rem">Implementation + monthly · Payment terms 50 / 30 / 20</p>
+    <div class="grid-3" style="margin-bottom:2.5rem">
+      <div class="price-card reveal">
+        <h3>Starter Tier</h3>
+        <p class="sub">SMEs · single site</p>
+        <div class="price-row"><span>FS POS</span><span>₱35K + ₱2.5K/mo</span></div>
+        <div class="price-row"><span>FS Inventory</span><span>₱35K + ₱2.5K/mo</span></div>
+        <div class="price-row"><span>FS Reserve</span><span>₱65K + ₱5.5K/mo</span></div>
+      </div>
+      <div class="price-card hot reveal">
+        <span class="badge-hot">Popular</span>
+        <h3>Growth Tier</h3>
+        <p class="sub">Multi-branch · 2–5 sites</p>
+        <div class="price-row"><span>FS POS</span><span>₱65K + ₱5.5K/mo</span></div>
+        <div class="price-row"><span>FS CRM</span><span>₱90K + ₱7.5K/mo</span></div>
+        <div class="price-row"><span>FS FleetHaul</span><span>₱120K + ₱10K/mo</span></div>
+      </div>
+      <div class="price-card reveal">
+        <h3>Enterprise Tier</h3>
+        <p class="sub">Regional / multi-entity</p>
+        <div class="price-row"><span>Custom apps</span><span>₱650K – ₱1.5M+</span></div>
+        <div class="price-row"><span>Multi-branch bundle</span><span>₱650K+ / ₱55K+</span></div>
+        <div class="price-row"><span>Enterprise platform</span><span>₱1.2M+ / ₱85K+</span></div>
+      </div>
+    </div>
+    <p class="eyebrow reveal">Bundles (save 10–15%)</p>
+    <div class="grid-4">
+      <div class="bundle reveal"><h4>Starter Business</h4><span class="disc">10% off</span><p class="meta">POS + Inventory + Accounting</p><p class="price">₱99K · ₱9,500/mo</p></div>
+      <div class="bundle reveal"><h4>Growth Business</h4><span class="disc">15% off</span><p class="meta">POS + Inventory + Accounting + HR</p><p class="price">₱155K · ₱14,500/mo</p></div>
+      <div class="bundle reveal"><h4>Customer Growth</h4><span class="disc">12% off</span><p class="meta">CRM + POS + Accounting</p><p class="price">₱155K · ₱13,500/mo</p></div>
+      <div class="bundle reveal"><h4>Operations 360</h4><span class="disc">15% off</span><p class="meta">Accounting + HR + Fleet + CRM</p><p class="price">₱270K · ₱24K/mo</p></div>
+    </div>
+  </div>
+</section>
+
+<section id="faq">
+  <div class="wrap" style="max-width:900px">
+    <p class="eyebrow reveal">FAQ</p>
+    <h2 class="reveal" style="margin-bottom:2rem">Frequently asked questions</h2>
+    <div class="reveal">
+      <div class="faq-item"><button type="button" class="faq-q">How long does implementation take?<span>+</span></button><div class="faq-a">Typical Starter deployments go live in 4–8 weeks. Growth and multi-branch projects run 8–16 weeks depending on data migration and integrations. Enterprise timelines are scoped in the proposal.</div></div>
+      <div class="faq-item"><button type="button" class="faq-q">Do you support multi-branch operations?<span>+</span></button><div class="faq-a">Yes. Our systems are designed for Philippine multi-branch reality — NCR, Visayas, and Mindanao hubs with shared inventory, consolidated reporting, and role-based access per location.</div></div>
+      <div class="faq-item"><button type="button" class="faq-q">What cloud platforms do you use?<span>+</span></button><div class="faq-a">AWS, Azure, and Google Cloud Platform. We also support hybrid and multi-cloud architectures and help you choose the right mix for cost and compliance.</div></div>
+      <div class="faq-item"><button type="button" class="faq-q">How do you handle security and compliance?<span>+</span></button><div class="faq-a">Security is built into every layer. We follow SOC 2, GDPR, and HIPAA frameworks as needed — encryption at rest and in transit, RBAC, and audit logging.</div></div>
+      <div class="faq-item"><button type="button" class="faq-q">What does managed support include?<span>+</span></button><div class="faq-a">24/7 monitoring, incident response with defined SLAs (as fast as 15 minutes for critical issues), proactive maintenance, performance optimization, and quarterly business reviews.</div></div>
+      <div class="faq-item"><button type="button" class="faq-q">What is DigiCard?<span>+</span></button><div class="faq-a">DigiCard is our digital identity card platform (preview). NFC and QR sharing, live analytics, full branding, and team provisioning. Access the hidden preview from Innovation or via #/digicard.</div></div>
+      <div class="faq-item"><button type="button" class="faq-q">How do I access the Client Portal?<span>+</span></button><div class="faq-a">Open Client in the nav or go to #/client. Registration requires an allowed email domain and a one-time OTP. Sessions last 24 hours.</div></div>
+    </div>
+  </div>
+</section>
+
+<section id="about">
+  <div class="wrap" style="max-width:720px">
+    <p class="eyebrow reveal">About</p>
+    <h2 class="reveal">Born in Mindanao. Built for the Philippines.</h2>
+    <p class="reveal" style="color:var(--muted);margin-top:1.25rem;line-height:1.7">
+      Tophcomm Systems and FS Softwares deliver Pattern-B architecture systems — Tauri, Flutter, API —
+      with pre-transfer knowledge so your team owns the system, not just IT. Leadership: Fritz Suarez, Founder.
+    </p>
+  </div>
+</section>
+
+<section id="contact">
+  <div class="wrap">
+    <p class="eyebrow reveal" style="text-align:center">Contact</p>
+    <h2 class="reveal" style="text-align:center;margin-bottom:.75rem">Ready to upgrade your systems?</h2>
+    <p class="reveal" style="text-align:center;color:var(--muted);margin-bottom:2rem;font-size:.95rem">Free 30-minute consultation. Nationwide support from 3 hubs.</p>
+    <form class="contact-form reveal" id="contact-form">
+      <div class="grid-2">
+        <div class="field"><label>Full name</label><input type="text" name="name" required placeholder="Your name"/></div>
+        <div class="field"><label>Work email</label><input type="email" name="email" required placeholder="you@company.com"/></div>
+      </div>
+      <div class="field"><label>Company</label><input type="text" name="company" placeholder="Company name"/></div>
+      <div class="field"><label>Hub preference</label>
+        <select name="hub"><option value="">Any / nationwide</option><option>NCR</option><option>Cebu</option><option>Davao</option></select>
+      </div>
+      <div class="field"><label>Message</label><textarea name="message" placeholder="What systems are you looking to improve?"></textarea></div>
+      <button type="submit" class="btn btn-solid" style="width:100%">Send inquiry</button>
+      <p style="text-align:center;margin-top:1rem;font-size:.8rem;color:var(--muted)">
+        Or email <a href="mailto:hello@tophcomm.systems" style="color:var(--blue)">hello@tophcomm.systems</a>
+        · <a href="#/client" data-route="client" style="color:var(--blue)">Client Portal</a>
+      </p>
+    </form>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div>
+      <strong style="color:#fff;display:block;margin-bottom:.35rem">Tophcomm Systems</strong>
+      FS Softwares · Nationwide PH<br/>NCR · Cebu · Davao
+    </div>
+    <div class="cols">
+      <div><h5>Product</h5><ul><li><a href="#solutions">Solutions</a></li><li><a href="#pricing">Pricing</a></li><li><a href="#/digicard" data-route="digicard">DigiCard</a></li></ul></div>
+      <div><h5>Company</h5><ul><li><a href="#about">About</a></li><li><a href="#hubs">Hubs</a></li><li><a href="#process">Process</a></li></ul></div>
+      <div><h5>Support</h5><ul><li><a href="#faq">FAQ</a></li><li><a href="#contact">Contact</a></li><li><a href="#/client" data-route="client">Client Portal</a></li></ul></div>
+      <div><h5>Legal</h5><ul><li>© 2026 Tophcomm</li><li>Standalone build</li></ul></div>
+    </div>
+  </div>
+  <p style="text-align:center;margin-top:2.5rem;font-size:.75rem;opacity:.55">Complete standalone build · Local version control · No server required</p>
+</footer>
+</div>
+
+<!-- DIGICARD -->
+<div class="view" id="view-digicard">
+  <div class="wrap" style="padding:5rem 1.5rem 4rem">
+    <a class="back-link" href="#/" data-route="home">← Back to Tophcomm</a>
+    <div class="digi-hero">
+      <div>
+        <p class="eyebrow" style="color:var(--orange)">Innovation Lab · Hidden preview</p>
+        <h1 style="font-size:clamp(2rem,4vw,3.25rem);font-weight:500;letter-spacing:-.03em;line-height:1.15;margin:.5rem 0 1rem">Your identity.<br/><span style="color:var(--orange)">Digitally alive.</span></h1>
+        <p style="color:var(--muted);line-height:1.6;max-width:28rem;margin-bottom:1.5rem">DigiCard replaces paper cards with NFC-ready, analytics-powered digital identities — branded, team-managed, and always up to date.</p>
+        <div style="display:flex;flex-wrap:wrap;gap:.75rem">
+          <a class="btn btn-solid" href="#contact" data-route="home">Join waitlist</a>
+          <a class="btn btn-ghost" href="#/client" data-route="client">Client portal</a>
+        </div>
+      </div>
+      <div class="digi-card-stage">
+        <div class="card-3d" aria-label="3D DigiCard preview">
+          <div class="stripe"></div><div class="chip"></div><div class="nfc"></div><div class="label">DigiCard</div>
+        </div>
+      </div>
+    </div>
+    <div style="margin-top:3.5rem">
+      <h2 style="font-size:1.5rem;margin-bottom:1.25rem">Platform features</h2>
+      <div class="grid-4">
+        <div class="card"><h3>NFC & QR</h3><p>Tap or scan — instant share of your digital identity.</p></div>
+        <div class="card"><h3>Live Analytics</h3><p>See who viewed your card, when, and from where.</p></div>
+        <div class="card"><h3>Full Branding</h3><p>Match company colors, logo, and layout.</p></div>
+        <div class="card"><h3>Team Hub</h3><p>Provision cards for entire teams with templates.</p></div>
+        <div class="card"><h3>Secure Profile</h3><p>Control visibility; revoke access in one click.</p></div>
+        <div class="card"><h3>Always Current</h3><p>Update once — every shared link stays in sync.</p></div>
+      </div>
+    </div>
+    <p style="text-align:center;margin-top:3rem;font-size:.75rem;color:var(--muted)">Not listed in main navigation · Access via Innovation or direct URL</p>
+  </div>
+</div>
+
+<!-- CLIENT -->
+<div class="view" id="view-client">
+  <div class="portal">
+    <a class="back-link" href="#/" data-route="home">← Tophcomm</a>
+    <div style="display:flex;align-items:center;justify-content:center;gap:8px;margin-bottom:1.5rem">
+      <svg width="18" height="18" fill="none" stroke="#60a5fa" stroke-width="2" viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+      <strong>Client Portal</strong>
+    </div>
+    <div id="auth-panel">
+      <h1 id="auth-title">Welcome back</h1>
+      <p class="sub">Email-domain validation + OTP clearance</p>
+      <div class="tabs">
+        <button type="button" class="active" data-mode="login">Sign in</button>
+        <button type="button" data-mode="register">Register</button>
+      </div>
+      <form id="auth-form">
+        <div class="field" id="name-field" style="display:none"><label>Full name</label><input type="text" id="name" placeholder="Juan Dela Cruz" autocomplete="name"/></div>
+        <div class="field" id="company-field" style="display:none"><label>Company (optional)</label><input type="text" id="company" placeholder="Your company" autocomplete="organization"/></div>
+        <div class="field"><label>Work email</label><input type="email" id="email" required placeholder="you@company.com" autocomplete="email"/></div>
+        <div id="auth-error" class="alert alert-err" style="display:none"></div>
+        <button type="submit" class="btn btn-solid" style="width:100%" id="auth-submit">Send verification code</button>
+      </form>
+      <p style="font-size:11px;color:var(--muted);text-align:center;margin-top:1.25rem;line-height:1.5">Allowed: tophcomm.systems, fssoftwares.com, gmail.com, outlook.com, company.ph…</p>
+    </div>
+    <div id="otp-panel" style="display:none">
+      <h1>Enter verification code</h1>
+      <p class="sub">6-digit code for <span id="otp-email"></span></p>
+      <div id="demo-code" class="alert-demo" style="display:none">Demo mode — use this code<code id="demo-code-val"></code></div>
+      <form id="otp-form">
+        <div class="field"><label>OTP</label><input class="otp-input" type="text" id="otp" inputmode="numeric" maxlength="6" pattern="[0-9]*" placeholder="······" required/></div>
+        <div id="otp-error" class="alert alert-err" style="display:none"></div>
+        <button type="submit" class="btn btn-solid" style="width:100%">Verify & continue</button>
+        <button type="button" class="btn btn-ghost" style="width:100%;margin-top:.5rem" id="otp-back">Back</button>
+      </form>
+    </div>
+    <div id="dash-panel" style="display:none">
+      <div class="dash-card">
+        <div class="avatar" id="dash-avatar">U</div>
+        <div>
+          <strong id="dash-name"></strong>
+          <div style="font-size:.85rem;color:var(--muted)" id="dash-email"></div>
+          <div style="font-size:.75rem;color:#4ade80;margin-top:4px">✓ OTP verified · session active</div>
+        </div>
+      </div>
+      <p class="eyebrow">Quick access</p>
+      <div class="quick">
+        <button type="button"><strong>Projects</strong><small>Deployment status</small></button>
+        <button type="button"><strong>Documents</strong><small>Contracts & SOWs</small></button>
+        <button type="button"><strong>Support</strong><small>Open a ticket</small></button>
+        <button type="button"><strong>Account</strong><small>Profile & security</small></button>
+      </div>
+      <button type="button" class="btn btn-ghost" style="width:100%;margin-top:1.5rem" id="logout">Sign out</button>
+    </div>
+  </div>
+</div>
+
+<script>
+(function(){
+  const views={home:document.getElementById('view-home'),digicard:document.getElementById('view-digicard'),client:document.getElementById('view-client')};
+  function route(){
+    const hash=(location.hash||'#/').replace(/^#\/?/, '')||'home';
+    const page=hash.split('?')[0].split('/')[0]||'home';
+    const key=views[page]?page:'home';
+    Object.keys(views).forEach(k=>views[k].classList.toggle('active',k===key));
+    window.scrollTo(0,0);
+    if(key==='client')initClientUI();
+  }
+  window.addEventListener('hashchange',route);
+  document.querySelectorAll('[data-route]').forEach(el=>{
+    el.addEventListener('click',()=>{
+      const r=el.getAttribute('data-route');
+      if(r==='home')location.hash='#/';
+      else if(r)location.hash='#/'+r;
+    });
+  });
+
+  const menuBtn=document.getElementById('menuBtn');
+  const mobileMenu=document.getElementById('mobileMenu');
+  menuBtn.addEventListener('click',()=>mobileMenu.classList.toggle('open'));
+  mobileMenu.querySelectorAll('[data-close]').forEach(a=>a.addEventListener('click',()=>mobileMenu.classList.remove('open')));
+
+  window.addEventListener('scroll',()=>{
+    document.getElementById('nav').classList.toggle('scrolled',window.scrollY>24);
+  },{passive:true});
+
+  const io=new IntersectionObserver(entries=>{
+    entries.forEach(e=>{if(e.isIntersecting)e.target.classList.add('visible')});
+  },{threshold:0.1});
+  document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+
+  document.querySelectorAll('.faq-q').forEach(btn=>{
+    btn.addEventListener('click',()=>{
+      const item=btn.parentElement;
+      const open=item.classList.contains('open');
+      document.querySelectorAll('.faq-item').forEach(i=>i.classList.remove('open'));
+      if(!open)item.classList.add('open');
+    });
+  });
+
+  function toast(msg){
+    const t=document.getElementById('toast');
+    t.textContent=msg;t.classList.add('show');
+    setTimeout(()=>t.classList.remove('show'),2800);
+  }
+  document.getElementById('contact-form').addEventListener('submit',e=>{
+    e.preventDefault();
+    toast('Inquiry saved locally. We\'ll follow up at your email.');
+    e.target.reset();
+  });
+
+  /* particles */
+  const canvas=document.getElementById('particles');
+  const ctx=canvas.getContext('2d');
+  let pts=[],w,h,raf;
+  function resize(){w=canvas.width=canvas.offsetWidth;h=canvas.height=canvas.offsetHeight}
+  function initPts(){
+    pts=[];const n=Math.min(130,Math.floor((w*h)/11000));
+    for(let i=0;i<n;i++)pts.push({x:Math.random()*w,y:Math.random()*h,vx:(Math.random()-.5)*.35,vy:(Math.random()-.5)*.35,r:Math.random()*1.4+.4});
+  }
+  function draw(){
+    ctx.clearRect(0,0,w,h);ctx.fillStyle='rgba(107,159,255,.55)';
+    pts.forEach(p=>{p.x+=p.vx;p.y+=p.vy;if(p.x<0||p.x>w)p.vx*=-1;if(p.y<0||p.y>h)p.vy*=-1;ctx.beginPath();ctx.arc(p.x,p.y,p.r,0,Math.PI*2);ctx.fill()});
+    ctx.strokeStyle='rgba(107,159,255,.08)';
+    for(let i=0;i<pts.length;i++)for(let j=i+1;j<pts.length;j++){
+      const dx=pts[i].x-pts[j].x,dy=pts[i].y-pts[j].y,d=Math.hypot(dx,dy);
+      if(d<120){ctx.globalAlpha=1-d/120;ctx.beginPath();ctx.moveTo(pts[i].x,pts[i].y);ctx.lineTo(pts[j].x,pts[j].y);ctx.stroke();ctx.globalAlpha=1}
+    }
+    raf=requestAnimationFrame(draw);
+  }
+  function startParticles(){resize();initPts();cancelAnimationFrame(raf);draw()}
+  window.addEventListener('resize',()=>{resize();initPts()});
+  startParticles();
+
+  /* auth */
+  const ALLOWED=['tophcomm.systems','tophcomm.com','fssoftwares.com','fs-softwares.com','gmail.com','outlook.com','yahoo.com','company.ph','corp.ph'];
+  const SK='tophcomm_client_session',OK='tophcomm_pending_otp';
+  function domainOk(email){const d=(email.split('@')[1]||'').toLowerCase();return ALLOWED.some(a=>d===a||d.endsWith('.'+a))}
+  function getSession(){try{const u=JSON.parse(localStorage.getItem(SK)||'null');if(!u||Date.now()>u.expiresAt){localStorage.removeItem(SK);return null}return u}catch{return null}}
+  function show(panel){['auth-panel','otp-panel','dash-panel'].forEach(id=>{document.getElementById(id).style.display=id===panel?'block':'none'})}
+  function initClientUI(){const s=getSession();if(s){document.getElementById('dash-name').textContent=s.name;document.getElementById('dash-email').textContent=s.email;document.getElementById('dash-avatar').textContent=(s.name||'U').charAt(0).toUpperCase();show('dash-panel')}else show('auth-panel')}
+  let mode='login';
+  document.querySelectorAll('.tabs button').forEach(btn=>{
+    btn.addEventListener('click',()=>{
+      mode=btn.dataset.mode;
+      document.querySelectorAll('.tabs button').forEach(b=>b.classList.toggle('active',b===btn));
+      document.getElementById('auth-title').textContent=mode==='login'?'Welcome back':'Create client account';
+      document.getElementById('name-field').style.display=mode==='register'?'block':'none';
+      document.getElementById('company-field').style.display=mode==='register'?'block':'none';
+      document.getElementById('auth-error').style.display='none';
+    });
+  });
+  document.getElementById('auth-form').addEventListener('submit',e=>{
+    e.preventDefault();
+    const email=document.getElementById('email').value.trim().toLowerCase();
+    const name=document.getElementById('name').value.trim();
+    const company=document.getElementById('company').value.trim();
+    const err=document.getElementById('auth-error');err.style.display='none';
+    if(!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)){err.textContent='Enter a valid email address.';err.style.display='block';return}
+    if(!domainOk(email)){err.textContent='Email domain not authorized.';err.style.display='block';return}
+    if(mode==='register'&&name.length<2){err.textContent='Full name is required (min 2 characters).';err.style.display='block';return}
+    const code=String(Math.floor(100000+Math.random()*900000));
+    localStorage.setItem(OK,JSON.stringify({email,name:name||email.split('@')[0],company:company||undefined,code,expiresAt:Date.now()+10*60*1000}));
+    document.getElementById('otp-email').textContent=email;
+    document.getElementById('demo-code').style.display='block';
+    document.getElementById('demo-code-val').textContent=code;
+    document.getElementById('otp').value='';
+    document.getElementById('otp-error').style.display='none';
+    show('otp-panel');
+  });
+  document.getElementById('otp-form').addEventListener('submit',e=>{
+    e.preventDefault();
+    const entered=document.getElementById('otp').value.trim();
+    const err=document.getElementById('otp-error');err.style.display='none';
+    let pending;try{pending=JSON.parse(localStorage.getItem(OK)||'null')}catch{pending=null}
+    if(!pending||Date.now()>pending.expiresAt){err.textContent='Code expired. Request a new one.';err.style.display='block';return}
+    if(pending.code!==entered){err.textContent='Invalid verification code.';err.style.display='block';return}
+    const user={email:pending.email,name:pending.name,company:pending.company,expiresAt:Date.now()+24*60*60*1000};
+    localStorage.setItem(SK,JSON.stringify(user));localStorage.removeItem(OK);
+    document.getElementById('dash-name').textContent=user.name;
+    document.getElementById('dash-email').textContent=user.email;
+    document.getElementById('dash-avatar').textContent=user.name.charAt(0).toUpperCase();
+    show('dash-panel');
+  });
+  document.getElementById('otp-back').addEventListener('click',()=>show('auth-panel'));
+  document.getElementById('logout').addEventListener('click',()=>{localStorage.removeItem(SK);localStorage.removeItem(OK);show('auth-panel')});
+
+  route();
+})();
+</script>
+</body>
+</html>
